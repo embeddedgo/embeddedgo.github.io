@@ -24,7 +24,7 @@ youtube_username: channel/UCAW4PLMDGO7_vY4sCG0jg6Q
 google_group: embeddedgo
 #disqus:
 #  shortname: ziutek
-google_analytics: UA-116411758-1
+google_analytics: UA-116411758-2
 
 # Build settings
 markdown: kramdown
