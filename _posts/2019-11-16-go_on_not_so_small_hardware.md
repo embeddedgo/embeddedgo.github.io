@@ -260,7 +260,7 @@ There is `//go:interrupthandler` pragma that allows to write interrupt handlers 
 
 Some tests for linux/thumb still fail. They are all related to trecebacks and the problem probably lies in the fact that in Thumb mode the function address in memory differs from its call addres (the LSBit in the call addres is set). I fixed many such tests but those few I leave for later.  
 
-The os package is not ported yet. We have GOOS set to *noos* and I'm still not sure how to approach this. This is rather philosophical (not technical) problem and requires some reflection. We probably need something like a virtual file system but the case remains open.
+The os package is not ported yet. We have GOOS set to *noos* and I'm still not sure how to approach this. This is rather philosophical (less technical) problem and requires some reflection. We probably need something like a virtual file system but the case remains open.
 
 All packages that require the os package (directly or indirectly) will not work. In particular this applies to the time package. There is a [port of time package](https://github.com/embeddedgo/x/tree/master/time) from Emgo which you can use in place of the original one:
 
