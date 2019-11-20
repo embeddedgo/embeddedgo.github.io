@@ -54,7 +54,8 @@ In practice it turned out that using a thumb instead of the whole arm and switch
 #### Convert the ARM assembler into the Thumb2 assembler
 
 So I have working assembler for GOARCH=thumb but it still generates ARM code. It would seem that the conversion should be simple: the same user registers,
-mostly the same addressing modes and instruction names. The original arm assembler helped much but the thumb one diverges far away from it. Here are the reasons:
+mostly the same addressing modes and instruction names. The original ARM
+assembler helped much but the Thumb2 one diverges far away from it. Here are the reasons:
 
 1. Many Thumb2 instructions have two available encodings: 16 or 32 bit. One of my design choices was that the code generator should use the shortest possible encoding. This complicates thigs much compared to the original ARM assembler.
 
