@@ -14,7 +14,7 @@ In this article, I would like to briefly describe the process of porting Go to a
 
 The starting point is easy but requires a lot of work. Make Go recognize your new GOOS/GOARCH (in my case linux/thumb) and implement it using some existing port (in my case linux/arm). At the effect you obtain two ports that generate identical code.
 
-To do this you need to find all architecture debpendent code. In case of compiler, assembler and linker the *find* command with `-exec grep` option is your best friend. In case of the runtime and the standard library you should search for all \*_GOARCH.\* files and copy them with your NEWGOARCH name. You should also search for all files with `// +build.*GOARCH` directive and add your NEWGOARCH to it.
+To do this you need to find all architecture dependent code. In case of compiler, assembler and linker the *find* command with `-exec grep` option is your best friend. In case of the runtime and the standard library you should search for all \*_GOARCH.\* files and copy them with your NEWGOARCH name. You should also search for all files with `// +build.*GOARCH` directive and add your NEWGOARCH to it.
 
 #### The Assembler
 
@@ -42,7 +42,10 @@ The thumb is the most important digit of the human hand. Losing a thumb is more 
 
 ![Do gophers have thumbs?]({{ site.baseur }}/images/gopher/gopher-thumb.jpg)
 
-A long time ago, engineers at ARM decided to shorten the instruction words of their microprocessor. This was dictated by the needs of resource constrained embedded systems. So they created a new set of 16-bit instructions called Thumb. Comparing the thumb alone with the whole arm well illustrates the capabilities of the new instruction set.
+A long time ago, engineers at ARM decided to shorten the instruction words of
+their microprocessor. This was dictated by the needs of resource constrained
+embedded systems. So they created a new set of 16-bit instructions called Thumb.
+Comparing a thumb alone with a whole arm well illustrates the capabilities of the new instruction set.
 
 This new heavily depleted instruction set has been added to the existing one and the decision which set will be used has been left to the developers. The assumption of the engineers was that one program could use both instruction sets for different pieces of code. Unfortunately, they came across a significant problem: the lack of space in the current instruction set encoding for an additional one. The solution to the problem was brilliant although not without some flaws. They decided to use the least significant bit of the address used for indirect branches. If this bit is set the CPU decodes the following instructions in the Thumb mode, if it's clered the instruction decoder switches to the ARM mode.
 
