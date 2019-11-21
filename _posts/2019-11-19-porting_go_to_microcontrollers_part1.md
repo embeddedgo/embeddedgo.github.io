@@ -79,7 +79,7 @@ For typical architecture, porting the linker should be fairly straightforward. T
 
 1. Implement all types of [relocations](https://www.altoros.com/blog/golang-internals-part-3-the-linker-object-files-and-relocations/) (you started this in assembler, which generates relocations for the linker).
 
-2. Implement the executable binary format for your GOOS/ARCH. If it uses common executable format like ELF your work will be limited to making small changes in an existing implementation.
+2. Implement the executable binary format for your GOOS/GARCH. If it uses common executable format like ELF your work will be limited to making small changes in the existing implementation.
 
 A confirmation of the linker operation will be the ability to assemble and link a simple assembly-only program. It should contain the `_rt0_GOARCH_GOOS` function which is the default entry point. In this program you should test all types of reclocations by loading global variables and directly/indirectly calling other functions. You need a debugger with support for your architecture.
 
