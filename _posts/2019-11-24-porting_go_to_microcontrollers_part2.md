@@ -43,7 +43,7 @@ There is a [test program](https://github.com/embeddedgo/stm32/blob/master/devboa
 
 #### Threads
 
-I had couple of ideas on how to address the problem of threads needed by the Go scheduler. The one was to don't implement them at all and schedule all gorutines on one thread. However, it turned out that the design of the whole runtime is so strongly dependent on the concept of the OS thread. It uses them heavily for so many things that the necessary changes would require enormous work with a vague effect.
+I had couple of ideas on how to address the problem of threads needed by the Go scheduler. The one was to don't implement them at all and schedule all gorutines on one thread. However, it turned out that the design of the whole runtime is strongly dependent on the concept of the OS thread. It uses them heavily for so many things that the necessary changes would require enormous work with a vague effect.
 
 The second idea was to implement simple thread scheduler, well separated from the runtime, who does everything a decent RTOS does. I have some experience in this topic so the first implementation was created fairly quickly and it turned out immediately how many things are redundant.
 
