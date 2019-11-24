@@ -112,4 +112,4 @@ The noos/thumb port adds one new thing to the compiler, the `//go:interrupthandl
 #### Summary
 
 In this article I briefly described the first phase of porting Go to the new architecture. 
-It concerned code generation. In the second part we will deal with the Go runtime.
+It concerned code generation. In the [second part]({{ site.baseur }}/2019/11/24/porting_go_to_microcontrollers_part2.html) we will deal with the Go runtime.
