@@ -37,9 +37,19 @@ In case of the noos target the runtime has to provide it all by itself.
 The noos port introduces a simple memory allocator that implements the interface expected by runtime. It works on memory blocks described at link time in -M option.
 The noos allocator reserves some memory space for persistent allocation need by runtime and gives the whole remaining part to the Go memory allocator as the initial heap arena.
 
-The Go allocator and garbage collector remained almost unmodified. Their rich set of configuration parameters allowed to adapt them to the system with <1MB RAM. It is really a good piece of code that turned out to be scalable form fraction of a megabyte to many gigabytes. The set of parameters I have chosen is definitely not the optimal one, the allocator and GC not tested much, but the current effect is promising in particular when it comes to memory fragmentation which a headache in case of embedded systems.
+The Go allocator and garbage collector remained almost unmodified. Their rich
+set of configuration parameters allowed to adapt them to the system with <1MB
+RAM. It is really a good piece of code that turned out to be scalable form
+fraction of a megabyte to many gigabytes. The set of parameters I have chosen is
+definitely not the optimal one, the allocator and GC not tested much, but the
+current effect is promising in particular when it comes to memory fragmentation
+which is a headache in case of embedded systems.
 
-There is a [test program](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/examples/gctest/main.go) which I used to force the allocator and GC to do some work. It contains two gorutines that communicate over a channnel. The first one vigorously allocate random blocks of memory and send them to the second one. The second one simply receives the blocks and discards them. This simple program can work for days on the border of memory capacity (tested with GOMAXPROCS set to 1 and 2).
+There is a [test
+program](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/examples/gctest/main.go)
+which I used to force the allocator and GC to do some work. It contains two
+gorutines that communicate over a channnel. The first one vigorously allocates
+random blocks of memory and sends them to the second one. The second one simply receives the blocks and discards them. This simple program can work for days on the border of memory capacity (tested with GOMAXPROCS set to 1 and 2).
 
 #### Threads
 
