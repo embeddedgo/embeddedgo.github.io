@@ -51,7 +51,7 @@ Eventually I implemented a thread scheduler that is tightly coupled to the Go sc
 
 #### Synchronization
 
-The thread scheduler provides futex like synchronization primitive. It allow to implement all runtime synchronization mechanisms but also allow to handle communication between interrupt handlers and goroutines (see [rtos.Note](https://github.com/embeddedgo/go/blob/embedded/src/embedded/rtos/note.go) type) which is essential for an efficient bare-metal programming.
+The thread scheduler provides futex like synchronization primitive. It allows to implement all runtime synchronization mechanisms but also allows to handle communication between interrupt handlers and goroutines (see [rtos.Note](https://github.com/embeddedgo/go/blob/embedded/src/embedded/rtos/note.go) type) which is essential for an efficient bare-metal programming.
 
 #### Time
 
