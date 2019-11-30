@@ -60,7 +60,7 @@ However, in most cases a fast response is essential and interrupts give us both 
 
 #### External interrupt controller
 
-Virtually every microcontroller has an ability to use IO pins as source of external interrupts. Usually, there is some built-in subsystem consisting of a certain number of edge detectors that can be configured to detect changes on a limited number of digital inputs.
+Virtually every microcontroller has an ability to use IO pins as source of external interrupts. Usually, there is some built-in subsystem consisting of a certain number of edge detectors that can be configured to detect changes on digital inputs.
 
 The figure below shows the structure of an external interrupt controller (EXTI) you can found in every STM32 microcontroller:
 
