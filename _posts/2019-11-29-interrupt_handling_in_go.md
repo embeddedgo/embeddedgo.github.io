@@ -214,7 +214,7 @@ The idiomatic way of interrupt handling in Go is to divide the handler into two 
 
 This is similar concept to the Linux software and hardware interrupts. The real interrupt handler does things that can't be done in thread mode or that require hard-realtime service. Then it passes control to the thread mode and the further work is done by goroutines.
 
-The noos port introduces [embeddedgo/rtos.Note](https://github.com/embeddedgo/go/blob/embedded/src/embedded/rtos/note.go) type that allows the interrupt handlers to communicate with goroutines. This isn't a new thing because the [runtime.note](https://github.com/embeddedgo/go/blob/221885ad6c9764bd435d97fab6f337147dca62fe/src/runtime/runtime2.go#L180) exists in the Go runtime for a long time. The noos port exposes it in the rtos package and introduces a way for interrupt handlers to wakeup gorutines sleeping on notes.
+The noos port introduces [embedded/rtos.Note](https://github.com/embeddedgo/go/blob/embedded/src/embedded/rtos/note.go) type that allows the interrupt handlers to communicate with goroutines. This isn't a new thing because the [runtime.note](https://github.com/embeddedgo/go/blob/221885ad6c9764bd435d97fab6f337147dca62fe/src/runtime/runtime2.go#L180) exists in the Go runtime for a long time. The noos port exposes it in the rtos package and introduces a way for interrupt handlers to wakeup gorutines sleeping on notes.
 
 A typical control flow is shown in the diagram below:
 
