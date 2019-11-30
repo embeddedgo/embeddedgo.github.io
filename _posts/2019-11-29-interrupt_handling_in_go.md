@@ -131,7 +131,7 @@ I think the comments in the code clearly describe each step of EXTI configuratio
 
 The `EXTI15_10_Handler` function will be called on every EXTI15_10 interrupt. Because only the line 13 is enabled we don't need to check which line caused the interrupt.
 
-The `buttonPressed()` from the polling examples was replaced by `toggle(board.UserLED)` so we can see how this code behaves on real hardware.
+The `buttonPressed()` call from the polling examples was replaced by `toggle(board.UserLED)` so we can see how this code behaves on real hardware.
 
 Let's write `build.sh` script to facilitate subsequent builds of our sample program:
 
@@ -179,6 +179,7 @@ and use it:
 	<source src='{{site.baseur}}/videos/irq1.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
+<p></p>
 {:/}
 
 This is definitely not what we wanted. The problem is that the interrupt is active until we clear it in the pending request register. Let's clear it:
@@ -198,6 +199,7 @@ As this IRQ is shared by six EXTI lines we read six pending bits and clear them 
 	<source src='{{site.baseur}}/videos/irq2.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
+<p></p>
 {:/}
 
 This version works much better but it's slightly unreliable. Even though the Nucleo's button is equipped with a simple RC debouncing circuit it still generates spurious open/close transitions when pressed. We need some kind of debouncing algorithm.
@@ -212,7 +214,7 @@ The idiomatic way of interrupt handling in Go is to divide the handler into two 
 
 This is similar concept to the Linux software and hardware interrupts. The real interrupt handler does things that can't be done in thread mode or that require hard-realtime service. Then it passes control to the thread mode and the further work is done by goroutines.
 
-The noos port introduces [embeddedgo/rtos.Note](https://github.com/embeddedgo/go/blob/embedded/src/embedded/rtos/note.go) type that allows the interrupt handlers to communicate with goroutines. This isn't a new thing because the [runtime.note](https://github.com/embeddedgo/go/blob/embedded/src/embedded/rtos/note.go) works in the Go runtime for a very long time. The noos port exposes it in the rtos package and introduces a way for interrupt handlers to wakeup gorutines sleeping on notes.
+The noos port introduces [embeddedgo/rtos.Note](https://github.com/embeddedgo/go/blob/embedded/src/embedded/rtos/note.go) type that allows the interrupt handlers to communicate with goroutines. This isn't a new thing because the [runtime.note](https://github.com/embeddedgo/go/blob/embedded/src/embedded/rtos/note.go) exists in the Go runtime for a very long time. The noos port exposes it in the rtos package and introduces a way for interrupt handlers to wakeup gorutines sleeping on notes.
 
 A typical control flow is shown in the diagram below:
 
