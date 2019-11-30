@@ -293,7 +293,7 @@ We introduced a new goroutine to handle the user button and LED. It uses the `wa
 
 #### Button debouncing done right
 
-There are many debouncing algorithms. I will present the best one (in my opinion) which is simple and perfectly uses the features of rtos.Note type:
+There are many debouncing algorithms but I will present the best one ;-) which is simple and perfectly uses the features of rtos.Note type:
 
 ```go
 package main
@@ -367,9 +367,9 @@ func EXTI15_10_Handler() {
 
 What has been changed? The edge detector now detects both rising and falling edges of an input signal. The waitBtn function gained one parameter which is the button state it should waiting for.
 
-The waitBtn function no longer waits for the first signal from the handler. Now it waits in a loop for the desired stable state. The state is considered stable if it is maintained for at least 50 ms. To determine this we simply use Note.Sleep method with the timeout set to this time.
+The waitBtn function no longer waits for the first signal from the handler. Now it waits in a loop for the desired stable state. The state is considered stable if it is maintained for at least 50 ms. To determine this it simply uses Note.Sleep method with the timeout set to 50e6 ns.
 
-The buttonLED function now waits for the button to be pressed then toggles the LED and next waits for the button to be released. This algorithm works very well:
+The buttonLED function now waits for the button to be pressed then toggles the LED and next waits for the button to be released as in polling algorithm from begginningo of this article. Now the button works perfectly:
 
 {::nomarkdown}
 <video width=640 height480 controls preload=auto>
