@@ -224,9 +224,9 @@ A goroutine prepares data for the next transaction and then clears the note. The
 
 The goroutine starts the transaction according to the hardware protocol implemented by peripheral, enables interrupts and then waits for the end of transaction using `Note.Sleep` method. 
 
-The interrupt handler usually disables its interrupt source to ensure that it will not be called again until the goroutine will be ready for next transaction. You can see that this scheme can be used if the interrupt is a part of some kind of transaction processing protocol. Fortunately, the vast majority of peripheral devices operate on the basis of a transactional model. If the subsequent interrupt is allowed to occur before the previous one has been serviced many peripherals implement pending state to avoid losing it.
+The interrupt handler usually disables its interrupt source to ensure that it will not be called again until the goroutine will be ready for next transaction. This scheme can be used if the interrupt is a part of some kind of transaction processing protocol. Fortunately, the vast majority of peripheral devices operate on the basis of a transactional model. If the subsequent interrupt is allowed to occur before the previous one has been serviced many peripherals implement pending state to avoid losing it.
 
-Then the handler handles all hard-realtime things, reads and writes shared data, and if everything is donedone wakes goroutine up.
+Then the handler handles all hard-realtime things, reads and writes shared data, and if everything is done it wakes the goroutine up.
 
 To show it all in practice let's rewrite the previous code in the more idiomatic way:
 
@@ -289,7 +289,7 @@ func EXTI15_10_Handler() {
 
 We introduced a new goroutine to handle the user button and LED. It uses the `waitBtn` function to wait for the button to be pressed. The waitBtn function clears the note, enables interrupts and falls asleep. Note that the interrupt enable call has been moved here from the main function.
 
- As we have seen before the button is allowed to generate spurious interrupts so the handler disabes generation of interrupts and then clears pending state. This is required because waking the note twice before clearing it is treated by runtime as fatal error.
+ As we have seen before the button is allowed to generate spurious interrupts so the handler disables generation of interrupts and then clears pending state. This is required because waking the note twice before clearing it is treated by runtime as fatal error.
 
 #### Button debouncing done right
 
