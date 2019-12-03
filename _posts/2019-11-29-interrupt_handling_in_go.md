@@ -22,7 +22,7 @@ There is probably no more basic way of communicating with a microcontroller than
 
 ```go
 for {
-	if board.UserBtn.Read() != 0 {
+	if buttons.User.Read() != 0 {
 		buttonPressed()
 	}
 }
@@ -32,10 +32,10 @@ Assuming we have a debouncing handled by some external circuit and we are intere
 
 ```go
 for {
-	for board.UserBtn.Read() == 0 {
+	for buttons.User.Read() == 0 {
 	}
 	buttonPressed()
-	for board.UserBtn.Read() != 0 {
+	for buttons.User.Read() != 0 {
 	}
 }
 ```
@@ -44,11 +44,11 @@ The problem with our sample code is clear -- the power consumption. We can signi
 
 ```go
 for {
-	for board.UserBtn.Read() == 0 {
+	for buttons.User.Read() == 0 {
 		time.Sleep(50 * time.Millisecond)
 	}
 	buttonPressed()
-	for board.UserBtn.Read() != 0 {
+	for buttons.User.Read() != 0 {
 		time.Sleep(50 * time.Millisecond)
 	}
 }
@@ -78,17 +78,17 @@ package main
 import (
 	"embedded/rtos"
 
-	"github.com/embeddedgo/stm32/devboard/nucleo-l476rg/board"
 	"github.com/embeddedgo/stm32/hal/exti"
 	"github.com/embeddedgo/stm32/hal/irq"
+
+	"github.com/embeddedgo/stm32/devboard/nucleo-l476rg/board/buttons"
+	"github.com/embeddedgo/stm32/devboard/nucleo-l476rg/board/leds"
 )
 
 func main() {
-	board.Setup(true)
-
 	// Get the pin associated with the User button. It will be the
 	// PA0 in case of F4-Discovery or PC13 in case of Nucleo boards.
-	pin := board.UserBtn.Pin()
+	pin := buttons.User.Pin()
 
 	// The EXTI line directly corresponds to the pin number (0 for PA0,
 	// 13 for PC13). You can't use PAn, PBn, PCn, ... at the same time
@@ -115,13 +115,13 @@ func main() {
 	}
 }
 
-func toggle(led board.LED) {
+func toggle(led leds.LED) {
 	led.Set(led.Get() + 1)
 }
 
 //go:interrupthandler
 func EXTI15_10_Handler() {
-	toggle(board.UserLED)
+	toggle(leds.User)
 }
 ```
 
@@ -131,7 +131,7 @@ I think the comments in the code clearly describe each step of EXTI configuratio
 
 The `EXTI15_10_Handler` function will be called on every EXTI15_10 interrupt. Because only the line 13 is enabled we don't need to check which line caused the interrupt.
 
-The `buttonPressed()` call from the polling examples was replaced by `toggle(board.UserLED)` so we can see how this code behaves on real hardware.
+The `buttonPressed()` call from the polling examples was replaced by `toggle(leds.User)` so we can see how this code behaves on real hardware.
 
 Let's write `build.sh` script to facilitate subsequent builds of our sample program:
 
@@ -153,9 +153,9 @@ $ cd $HOME/irqtest
 $ go mod init irqtest
 $ chmod a+x build.sh
 $ ./build.sh
-go: finding github.com/embeddedgo/stm32 v0.1.9
-go: downloading github.com/embeddedgo/stm32 v0.1.9
-go: extracting github.com/embeddedgo/stm32 v0.1.9
+go: finding github.com/embeddedgo/stm32 v0.2.0
+go: downloading github.com/embeddedgo/stm32 v0.2.0
+go: extracting github.com/embeddedgo/stm32 v0.2.0
 $ ls
 build.sh  go.mod  go.sum  irqtest.elf  main.go
 ```
@@ -188,7 +188,7 @@ This is definitely not what we wanted. The problem is that the interrupt is acti
 func EXTI15_10_Handler() {
 	p := exti.Pending() & (exti.L15<<1 - exti.L10)
 	p.ClearPending()
-	toggle(board.UserLED)
+	toggle(leds.User)
 }
 ```
 
@@ -222,7 +222,7 @@ A typical control flow is shown in the diagram below:
 
 A goroutine prepares data for the next transaction and then clears the note. The `Note.Clear` method has memory barrier semantic. It ensures the prepared data will be visible consistent for the interrupt handler even if it runs on the other core.
 
-The goroutine starts the transaction according to the hardware protocol implemented by peripheral, enables interrupts and then waits for the end of transaction using `Note.Sleep` method. 
+The goroutine starts the transaction according to the hardware protocol implemented by peripheral, enables interrupts and then waits for the end of transaction using `Note.Sleep` method.
 
 The interrupt handler usually disables its interrupt source to ensure that it will not be called again until the goroutine will be ready for next transaction. This scheme can be used if the interrupt is a part of some kind of transaction processing protocol. Fortunately, the vast majority of peripheral devices operate on the basis of a transactional model. If the subsequent interrupt is allowed to occur before the previous one has been serviced many peripherals implement pending state to avoid losing it.
 
@@ -236,15 +236,15 @@ package main
 import (
 	"embedded/rtos"
 
-	"github.com/embeddedgo/stm32/devboard/nucleo-l476rg/board"
 	"github.com/embeddedgo/stm32/hal/exti"
 	"github.com/embeddedgo/stm32/hal/irq"
+
+	"github.com/embeddedgo/stm32/devboard/nucleo-l476rg/board/buttons"
+	"github.com/embeddedgo/stm32/devboard/nucleo-l476rg/board/leds"
 )
 
 func main() {
-	board.Setup(true)
-
-	pin := board.UserBtn.Pin()
+	pin := buttons.User.Pin()
 	line := exti.Lines(1 << pin.Index())
 	line.Connect(pin.Port())
 	line.EnableRiseTrig()
@@ -261,11 +261,11 @@ func main() {
 func buttonLED() {
 	for {
 		waitBtn()
-		toggle(board.UserLED)
+		toggle(leds.User)
 	}
 }
 
-func toggle(led board.LED) {
+func toggle(led leds.LED) {
 	led.Set(led.Get() + 1)
 }
 
@@ -273,7 +273,7 @@ var note rtos.Note
 
 func waitBtn() {
 	note.Clear()
-	pin := board.UserBtn.Pin()
+	pin := buttons.User.Pin()
 	exti.Lines(1 << pin.Index()).EnableIRQ()
 	note.Sleep(-1)
 }
@@ -301,15 +301,15 @@ package main
 import (
 	"embedded/rtos"
 
-	"github.com/embeddedgo/stm32/devboard/nucleo-l476rg/board"
 	"github.com/embeddedgo/stm32/hal/exti"
 	"github.com/embeddedgo/stm32/hal/irq"
+
+	"github.com/embeddedgo/stm32/devboard/nucleo-l476rg/board/buttons"
+	"github.com/embeddedgo/stm32/devboard/nucleo-l476rg/board/leds"
 )
 
 func main() {
-	board.Setup(true)
-
-	pin := board.UserBtn.Pin()
+	pin := buttons.User.Pin()
 	line := exti.Lines(1 << pin.Index())
 	line.Connect(pin.Port())
 	line.EnableRiseTrig()
@@ -327,24 +327,24 @@ func main() {
 func buttonLED() {
 	for {
 		waitBtn(1)
-		toggle(board.UserLED)
+		toggle(leds.User)
 		waitBtn(0)
 	}
 }
 
-func toggle(led board.LED) {
+func toggle(led leds.LED) {
 	led.Set(led.Get() + 1)
 }
 
 var note rtos.Note
 
 func waitBtn(state int) {
-	line := exti.Lines(1 << board.UserBtn.Pin().Index())
+	line := exti.Lines(1 << buttons.User.Pin().Index())
 	for {
 		note.Clear()
 		line.EnableIRQ()
 		wait := int64(-1)
-		if board.UserBtn.Read() == state {
+		if buttons.User.Read() == state {
 			wait = 50e6 // we want 50 ms of stable state
 		}
 		if !note.Sleep(wait) {
@@ -359,7 +359,7 @@ func EXTI15_10_Handler() {
 	p := exti.Pending() & (exti.L15<<1 - exti.L10)
 	p.DisableIRQ()
 	p.ClearPending()
-	if pin := board.UserBtn.Pin(); p>>pin.Index()&1 != 0 {
+	if pin := buttons.User.Pin(); p>>pin.Index()&1 != 0 {
 		note.Wakeup()
 	}
 }

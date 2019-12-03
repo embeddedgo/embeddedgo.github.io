@@ -96,7 +96,7 @@ The *blinky* example blinks all LEDs on the board at a speed dependent on the bu
 
 ```go
 func delay() {
-	if board.UserBtn.Read() != 0 {
+	if buttons.User.Read() != 0 {
 		time.Sleep(time.Second / 8)
 	} else {
 		time.Sleep(time.Second / 2)
@@ -104,22 +104,21 @@ func delay() {
 }
 
 func main() {
-	board.Setup(true)
 	for {
-		board.Green.SetOff()
-		board.Orange.SetOn()
+		leds.Green.SetOff()
+		leds.Orange.SetOn()
 		delay()
 
-		board.Orange.SetOff()
-		board.Red.SetOn()
+		leds.Orange.SetOff()
+		leds.Red.SetOn()
 		delay()
 
-		board.Red.SetOff()
-		board.Blue.SetOn()
+		leds.Red.SetOff()
+		leds.Blue.SetOn()
 		delay()
 
-		board.Blue.SetOff()
-		board.Green.SetOn()
+		leds.Blue.SetOff()
+		leds.Green.SetOn()
 		delay()
 	}
 }
@@ -160,7 +159,7 @@ sync
 ```
 
 If you have an older version you can program it with Texane's stlink
- 
+
 ```
 ../load-stlink.sh
 ```
@@ -182,12 +181,12 @@ $ arm-none-eabi-size blinky.elf
  567244	   2560	  11024	 580828	  8dcdc	blinky.elf
 ```
 
-And now we can tell what *not so small* means, at least when it comes to Flash. As you can see the smallest MCU you can consider should have 640 KB of Flash (our Discovery board has 1MB). 
+And now we can tell what *not so small* means, at least when it comes to Flash. As you can see the smallest MCU you can consider should have 640 KB of Flash (our Discovery board has 1MB).
 
 Let's compare this with a [similar program in Emgo](https://github.com/ziutek/emgo/tree/master/egpath/src/stm32/examples/f4-discovery/blinky/main.go):
 
 ```
-$ arm-none-eabi-size cortexm4f.elf 
+$ arm-none-eabi-size cortexm4f.elf
    text    data     bss     dec     hex filename
   10776     180     180   11136    2b80 cortexm4f.elf
 ```
@@ -195,7 +194,7 @@ $ arm-none-eabi-size cortexm4f.elf
 The difference is significant. Let's see what eats our Flash:
 
 ```
-$ arm-none-eabi-nm -S --size-sort blinky.elf |tail 
+$ arm-none-eabi-nm -S --size-sort blinky.elf |tail
 08012028 000006b8 T runtime.(*mspan).sweep
 0803196c 0000074c T internal/reflectlite.haveIdenticalUnderlyingType
 080560e8 0000075c r runtime.typelink
@@ -216,25 +215,24 @@ At the end, let's make a little modification of our program:
 
 ```go
 func main() {
-	board.Setup(true)
 	for {
-		board.Green.SetOff()
-		board.Orange.SetOn()
+		leds.Green.SetOff()
+		leds.Orange.SetOn()
 		println("orange")
 		delay()
 
-		board.Orange.SetOff()
-		board.Red.SetOn()
+		leds.Orange.SetOff()
+		leds.Red.SetOn()
 		println("red")
 		delay()
 
-		board.Red.SetOff()
-		board.Blue.SetOn()
+		leds.Red.SetOff()
+		leds.Blue.SetOn()
 		println("blue")
 		delay()
 
-		board.Blue.SetOff()
-		board.Green.SetOn()
+		leds.Blue.SetOff()
+		leds.Green.SetOn()
 		println("green")
 		delay()
 	}
@@ -258,7 +256,7 @@ The compiler, assembler, disassembler, linker and runtime are all usable but sti
 
 There is `//go:interrupthandler` pragma that allows to write interrupt handlers in Go. This pragma and `rtos.Note` type allows to write interrupt driven drivers for built-in peripherals. The programming environment seems to be ready but bugs can be anywhere :)
 
-Some tests for linux/thumb still fail. They are all related to trecebacks and the problem probably lies in the fact that in Thumb mode the function address in memory differs from its call addres (the LSBit in the call addres is set). I fixed many such tests but those few I leave for later.  
+Some tests for linux/thumb still fail. They are all related to trecebacks and the problem probably lies in the fact that in Thumb mode the function address in memory differs from its call addres (the LSBit in the call addres is set). I fixed many such tests but those few I leave for later.
 
 The os package is not ported yet. We have GOOS set to *noos* and I'm still not sure how to approach this. This is rather philosophical (less technical) problem and requires some reflection. We probably need something like a virtual file system but the case remains open.
 
