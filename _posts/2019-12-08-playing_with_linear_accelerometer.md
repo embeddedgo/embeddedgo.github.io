@@ -317,7 +317,7 @@ dri.EnableRiseTrig()
 irq.EXTI0.Enable(rtos.IntPrioLow)
 ```
 
-The code below is a very simple driver to the LIS3DSH accelerometer: 
+The code below is a very simple driver for the LIS3DSH accelerometer: 
 
 ```go
 type LIS3DSH struct {
