@@ -28,7 +28,7 @@ The first more general way is to use the [spi](https://pkg.go.dev/github.com/emb
 
 5. Enable appropriate interrupts in the NVIC and implement couple of interrupt handlers as small wrappers over the `spi.Driver.*ISR` methods.
 
-The second way is to use the spi*n* package which contains the ready to use
+The second way is to use the [spi*n*](https://pkg.go.dev/github.com/embeddedgo/stm32/hal/spi/spi1) package which contains the ready to use
 driver for SPI*n* peripheral. It does 3, 4, 5 for you. You can go this way as
 long as you don't encounter a conflict in the use of the same DMA stream/channel by two different peripherals.
 
@@ -42,7 +42,7 @@ The figure above was cut from the [F4-Discovery documentation](https://github.co
 
 ```go
 // Allocate GPIO pins
-	
+
 pa := gpio.A()
 pa.EnableClock(true)
 sck := pa.Pin(5)
@@ -171,7 +171,7 @@ for {
 		continue
 	}
 	datalost := status>>7&1 != 0
-	
+
 	xl := read(OUT_X_L)
 	xh := read(OUT_X_H)
 	yl := read(OUT_Y_L)
@@ -182,7 +182,7 @@ for {
 	x := int(int16(xl)|int16(xh)<<8) * 2000 / 32768
 	y := int(int16(yl)|int16(yh)<<8) * 2000 / 32768
 	z := int(int16(zl)|int16(zh)<<8) * 2000 / 32768
-	
+
 	println(x, y, z, datalost)
 }
 ```
@@ -317,7 +317,7 @@ dri.EnableRiseTrig()
 irq.EXTI0.Enable(rtos.IntPrioLow)
 ```
 
-The code below is a very simple driver for the LIS3DSH accelerometer: 
+The code below is a very simple driver for the LIS3DSH accelerometer:
 
 ```go
 type LIS3DSH struct {
@@ -374,7 +374,7 @@ func EXTI0_Handler() { accel.ISR() }
 ```
 
  You can read more about this topic in the [previous article]({{ site.baseur }}/2019/11/29/interrupt_handling_in_go.html).
- 
+
 You can use LIS3DSH type this way:
 
 ```go
