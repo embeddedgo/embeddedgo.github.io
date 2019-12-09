@@ -385,4 +385,4 @@ for {
 
 The complete code is [here]({{ site.baseur }}/code/2019-12-08-playing_with_linear_accelerometer/listing2.html).
 
-Another improvement of our simple program could be using the onboard LEDs instead of debug messages. We could transform our discovery board into some kind of electronic spirit level. It would be nice to use to use PWM to control LED brightness and this opens up a fascinating world of STM32 timers. However, this article is already long enough, so we will leave PWM and timers for another one.
+Another improvement of our simple program could be using the onboard LEDs instead of debug messages. We could transform our discovery board into some kind of electronic spirit level. It would be nice to use PWM to control LED brightness and this opens up a fascinating world of STM32 timers. However, this article is already long enough, so we will leave PWM and timers for another one.
