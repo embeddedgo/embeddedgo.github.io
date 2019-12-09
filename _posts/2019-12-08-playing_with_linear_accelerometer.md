@@ -28,7 +28,9 @@ The first more general way is to use the [spi](https://pkg.go.dev/github.com/emb
 
 5. Enable appropriate interrupts in the NVIC and implement couple of interrupt handlers as small wrappers over the `spi.Driver.*ISR` methods.
 
-The second way is to use the spi*n* package which contains the ready to use driver for SPI*n* peripheral. It does 3, 4, 5 for you. You can go this way as long you don't encounter a conflict in the use of the same DMA stream/channel by two different peripherals.
+The second way is to use the spi*n* package which contains the ready to use
+driver for SPI*n* peripheral. It does 3, 4, 5 for you. You can go this way as
+long as you don't encounter a conflict in the use of the same DMA stream/channel by two different peripherals.
 
 #### The onboard accelerometer
 
