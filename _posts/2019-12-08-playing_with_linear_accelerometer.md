@@ -274,7 +274,7 @@ type LIS3DSH struct {
 }
 
 func (a *LIS3DSH) ReadXYZ() (x, y, z int) {
-	buf := [1 + 3*2]byte{1<<7 | 0x28}
+	buf := [1 + 3*2]byte{1<<7 | OUT_X_L}
 	a.cs.Clear()
 	a.d.WriteRead(buf[:], buf[:])
 	a.cs.Set()
