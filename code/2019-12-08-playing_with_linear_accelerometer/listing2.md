@@ -46,9 +46,9 @@ func (a *LIS3DSH) ReadXYZ() (x, y, z int) {
 	a.drn.Clear()
 	a.dri.EnableIRQ()
 	a.drn.Sleep(-1)
-	buf := [1 + 3*2]byte{1<<7 | OUT_X_L}
+	buf := [1 + 6]byte{1<<7 | OUT_X_L}
 	a.cs.Clear()
-	a.d.WriteRead(buf[:], buf[:])
+	a.d.WriteRead(buf[:1], buf[:])
 	a.cs.Set()
 	x = int(int16(buf[1])|int16(buf[2])<<8) * 2000 / 32768
 	y = int(int16(buf[3])|int16(buf[4])<<8) * 2000 / 32768
