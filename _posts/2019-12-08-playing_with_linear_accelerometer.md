@@ -36,7 +36,7 @@ Even if we use the the spi*n* package we need to deal with items 1 and 2 so let'
 
 ![LIS3DSH]({{ site.baseur }}/images/mcu/devboard/lis3dsh.jpg)
 
-The figure above was cut from the [F4-Discovery documentation](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/doc/user_manual.pdf). It gives us all things needed to setup the SPI driver:
+The figure above was cut from the [F4-Discovery documentation](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/doc/user_manual.pdf). It gives us all information needed to setup the SPI driver:
 
 ```go
 // Allocate GPIO pins
