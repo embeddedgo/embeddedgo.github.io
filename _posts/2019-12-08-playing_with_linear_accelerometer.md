@@ -192,6 +192,7 @@ The video below shows our program in action:
 	<source src='{{site.baseur}}/videos/2019-12-08-playing_with_linear_accelerometer/video1.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
+<p></p>
 {:/}
 
 You can find the complete source code [here]({{ site.baseur }}/code/2019-12-08-playing_with_linear_accelerometer/listing1.html).
@@ -261,6 +262,7 @@ Now it's easier to see what's going on:
 	<source src='{{site.baseur}}/videos/2019-12-08-playing_with_linear_accelerometer/video2.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
+<p></p>
 {:/}
 
 Our current code requires twelve ReadWriteByte calls to read x, y, z. Every call is a new SPI transaction that internally requires setting interrupts and sleeping on the note. This in turn implies four context switches (two for interrupt handler and two for *notesleep* system call). But we can read x, y, z using only one SPI transaction:
