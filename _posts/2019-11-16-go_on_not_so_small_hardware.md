@@ -271,3 +271,5 @@ cp -r $HOME/embeddedgo/x/time .
 ```
 
 You can use git commands to easly revert any change so experiment without fear.
+
+*Michał Derkacz*

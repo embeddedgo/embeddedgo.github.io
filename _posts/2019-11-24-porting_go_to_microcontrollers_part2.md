@@ -20,7 +20,7 @@ The first stage touched the runtime slightly, mainly because of the Thumb bit in
 
 The second stage was mostly runtime because in case of GOOS=noos we don't have any operationg system but the runtime work is mostly based on the cooperation with the OS.
 
-An operating system provides the Go runtime the following things: 
+An operating system provides the Go runtime the following things:
 
 - memory,
 
@@ -70,3 +70,5 @@ The Go runtime needs to measure time for some of its algorithms. The thread sche
 #### Summary
 
 I'm aware that the description above is very cursory. If you would like to learn more, I encourage you to analyze the code and to ask questions on the [embeddedgo discussion group](https://groups.google.com/forum/#!forum/embeddedgo).
+
+*Michał Derkacz*

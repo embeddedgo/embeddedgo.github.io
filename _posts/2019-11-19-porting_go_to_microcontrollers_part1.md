@@ -38,7 +38,7 @@ Let's move now to my specific case: linux/thumb.
 
 #### The brief history of Thumb
 
-The thumb is the most important digit of the human hand. Losing a thumb is more disturbing than losing any finger.
+The thumb is the most important digit of human hand. Losing a thumb is more disturbing than losing any finger.
 
 ![Do gophers have thumbs?]({{ site.baseur }}/images/gopher/gopher-thumb.jpg)
 
@@ -111,5 +111,7 @@ The noos/thumb port adds one new thing to the compiler, the `//go:interrupthandl
 
 #### Summary
 
-In this article I briefly described the first phase of porting Go to the new architecture. 
+In this article I briefly described the first phase of porting Go to the new architecture.
 It concerned code generation. In the [second part]({{ site.baseur }}/2019/11/24/porting_go_to_microcontrollers_part2.html) we will deal with the Go runtime.
+
+*Michał Derkacz*

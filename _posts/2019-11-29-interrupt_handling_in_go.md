@@ -410,3 +410,5 @@ import _ "unsafe"
 ```
 
 You can see this file if compilation fails.
+
+*Michał Derkacz*

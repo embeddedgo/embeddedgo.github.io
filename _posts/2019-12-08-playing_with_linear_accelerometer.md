@@ -396,3 +396,5 @@ Another improvement of our simple program could be using the onboard LEDs
 instead of debug messages. We could transform our discovery board into some kind
 of electronic spirit level. It would be nice to use PWM to control LED
 brightness and this opens up a fascinating world of the STM32 timers. However, this article is already long enough, so we will leave PWM and timers for another one.
+
+*Michał Derkacz*
