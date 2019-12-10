@@ -69,7 +69,10 @@ The code above requires the following packages:
 "github.com/embeddedgo/stm32/hal/spi/spi1"
 ```
 
-The driver configuration is finished but you can't use it yet because the [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface) protocol itself has some additional parameters and the default values don't match the ones described in [LIS3DSH datasheet](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/doc/accel_ds.pdf):
+The driver configuration is finished but you can't use it yet because the
+[SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface) protocol itself
+has some additional parameters and the default values don't match the ones
+described in the [LIS3DSH datasheet](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/doc/accel_ds.pdf):
 
 ![LIS3DSH]({{ site.baseur }}/images/mcu/devboard/lis3dsh_spi1.jpg)
 
@@ -389,4 +392,7 @@ for {
 
 The complete code is [here]({{ site.baseur }}/code/2019-12-08-playing_with_linear_accelerometer/listing2.html).
 
-Another improvement of our simple program could be using the onboard LEDs instead of debug messages. We could transform our discovery board into some kind of electronic spirit level. It would be nice to use PWM to control LED brightness and this opens up a fascinating world of STM32 timers. However, this article is already long enough, so we will leave PWM and timers for another one.
+Another improvement of our simple program could be using the onboard LEDs
+instead of debug messages. We could transform our discovery board into some kind
+of electronic spirit level. It would be nice to use PWM to control LED
+brightness and this opens up a fascinating world of the STM32 timers. However, this article is already long enough, so we will leave PWM and timers for another one.
