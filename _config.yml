@@ -8,13 +8,13 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Embedded Go
-author: Michał Derkacz
+author: Embedded Go authors
 description: Bare-metal programming with Go.
 email:
 show_excerpts: true
 excerpt_separator: <!--more-->
 header_pages:
-  - about.md
+  - getting_started.md
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://embeddedgo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
