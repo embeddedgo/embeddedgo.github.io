@@ -16,7 +16,7 @@ Over the past dozen months I was concurrently involved in several hobby projects
 
 I spent a couple of months exploring the internals of the Go assembler, linker and compiler. The result was a preliminary port for the linux/thumb pair where *thumb* means the [Thumb2 instruction set](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0338g/ch01s02s01.html). This is the only instruction set included in the ARMv7-M ISA. After fixing most of the bugs in the linux/thumb port I've started working on the noos/thumb, the port that will be able to generate code for bare-metal ARM microcontrollers (Cortex-M3, M4, M7, etc. without any OS on the board).
 
-The whole fascinating history of the both stages is worth a separate article. Here, I will give you simple step by step recipe on how to compile and run your first Go program on the ARM microcontroller, in particular on the STM32F407 which is the heart of the popular [STM32F4-Discovery](https://www.st.com/en/evaluation-tools/stm32f4discovery.html) kit.
+The whole fascinating history of the both stages is worth another article. Here, I will just give you simple step by step recipe on how to compile and run your first Go program on the ARM microcontroller, in particular on the STM32F407 which is the heart of the popular [STM32F4-Discovery](https://www.st.com/en/evaluation-tools/stm32f4discovery.html) kit.
 
 ![Gopher on F4-Discovery]({{ site.baseur }}/images/gopher/gopher-discovery.jpg)
 
@@ -28,7 +28,7 @@ The programming environment will be based on the original Go compiler patched fo
 
 If you've never built the Go compiler from source then don't worry because it is an easy and fast process. Compilation of the whole Go together with the standard libraries takes less than 2 minutes on my desktop PC. This is incomparably faster than compiling GCC or LLVM which can take from about 30 minutes to a few hours depending on the speed of your computer.
 
-The whole procedure of instaling Go from source is fully described [here](https://golang.org/doc/install/source). In the following parts of this article I assume that you've managed to follow the instruction and your newly built Go toolchain is now located in `$HOME/goroot`.
+The whole procedure of instaling Go from source is fully described [here](https://golang.org/doc/install/source). In the following parts of this article I assume that you've managed to follow [the instruction](https://golang.org/doc/install/source) and your newly built Go toolchain is now located in `$HOME/goroot`.
 
 #### Downloading the necessary components of embeddedgo
 
@@ -59,7 +59,7 @@ patch -p1 < $HOME/embeddedgo/patch/go1.13.5
 cd src
 ./make.bash
 ```
-Now you have go1.13.5 with added support for linux/thumb and noos/thumb
+Now you have the ready to use go1.13.5 with added support for linux/thumb and noos/thumb
 GOOS/GOARCH pairs. You can run tests for your native architecture to ensure that
 nothing was broken:
 
@@ -82,7 +82,7 @@ The [embeddedgo/stm32/devboard](https://github.com/embeddedgo/stm32/tree/master/
 
 As every devboard from ST the F4-Discovery includes ST-LINK programmer so you can simply connect its mini-USB port to a free USB port in your PC.
 
-The hardware part of the programmer is done but we still neeed to handle a software part. You need to install [OpenOCD](http://openocd.org/) or [Texane's stlink](https://github.com/texane/stlink) and in case of Linux add some [udev rules](https://github.com/embeddedgo/doc/blob/master/stlink.rules).
+The hardware part of the programmer is done but we still neeed to handle the software part. You need to install [OpenOCD](http://openocd.org/) or [Texane's stlink](https://github.com/texane/stlink) and in case of Linux add some [udev rules](https://github.com/embeddedgo/doc/blob/master/stlink.rules).
 
 It is also advisable (required for Texane's stlink) to install binary utilities for ARM Cortex-A/R/M processors:
 
@@ -92,7 +92,7 @@ apt install binutils-arm-none-eabi
 
 #### Building the example program
 
-The *blinky* example blinks all LEDs on the board at a speed dependent on the button state:
+The *blinky* example blinks all LEDs on the board with speed dependent on the button state:
 
 ```go
 func delay() {
@@ -248,7 +248,8 @@ and run it:
 </video>
 {:/}
 
-As you can see, OpenOCD allows you to see debug messages and I don't have to convince anyone that it's very useful. You need to install [itmsplit](https://github.com/ziutek/itmsplit) to see anything.
+As you can see, OpenOCD allows you to see debug messages and I don't have to
+convince anyone that it's a very useful feature. You need to install [itmsplit](https://github.com/ziutek/itmsplit) to see anything.
 
 ### How complete is this port?
 
