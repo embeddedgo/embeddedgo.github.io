@@ -76,7 +76,7 @@ git clean -fd
 
 ### Building an running the example program
 
-The [embeddedgo/stm32/devboard](https://github.com/embeddedgo/stm32/tree/master/devboard) directory contains example programs for several development boards. In the following steps we'll use the *blinky* example for the STM32F4-Discovery kit.
+The [embeddedgo/stm32/devboard](https://github.com/embeddedgo/stm32/tree/master/devboard) directory contains example programs for several development boards. In the following steps we'll use the [blinky example](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/examples/blinky/main.go) for the STM32F4-Discovery kit.
 
 ![F4-Discovery]({{ site.baseur }}/images/mcu/devboard/f4-discovery.jpg)
 
@@ -92,7 +92,7 @@ apt install binutils-arm-none-eabi
 
 #### Building the example program
 
-The *blinky* example blinks all LEDs on the board with speed dependent on the button state:
+The blinky example blinks all LEDs on the board with speed dependent on the button state:
 
 ```go
 func delay() {
