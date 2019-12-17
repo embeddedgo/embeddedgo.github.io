@@ -365,7 +365,7 @@ func EXTI15_10_Handler() {
 }
 ```
 
-What has been changed? The edge detector now detects both rising and falling edges of an input signal. The waitBtn function gained one parameter which is the button state it should waiting for.
+What has been changed? The edge detector now detects both rising and falling edges of the input signal. The waitBtn function gained one parameter which is the button state it should waiting for.
 
 The waitBtn function no longer waits for the first signal from the handler. Now it waits in a loop for the desired stable state. The state is considered stable if it is maintained for at least 50 ms. To determine this it simply uses Note.Sleep method with the timeout set to 50e6 ns.
 
