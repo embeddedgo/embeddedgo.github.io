@@ -289,7 +289,7 @@ func EXTI15_10_Handler() {
 
 We introduced a new goroutine to handle the user button and LED. It uses the `waitBtn` function to wait for the button to be pressed. The waitBtn function clears the note, enables interrupts and falls asleep. Note that the interrupt enable call has been moved here from the main function.
 
- As we have seen before the button is allowed to generate spurious interrupts so the handler disables generation of interrupts and then clears pending state. This is required because waking the note twice before clearing it is treated by runtime as fatal error.
+ As we have seen before the button is allowed to generate spurious interrupts so the handler disables generation of interrupts and then clears pending state. ~~This is required because waking the note twice before clearing it is treated by runtime as fatal error~~ (this has changed: now there is allowed to call Note.Wakeup multiple times before clearing the note).
 
 #### Button debouncing done right
 
