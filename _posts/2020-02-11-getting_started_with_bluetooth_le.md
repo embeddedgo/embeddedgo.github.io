@@ -20,7 +20,7 @@ There are many nRF52840 based modules and development boards available on the ma
 
 #### Radio
 
-The one thing that distinguishes the nRF5 family from the other ARM based microcontrollers is its multiprotocol radio. It can handle Bluetooth LE, [ANT](https://en.wikipedia.org/wiki/ANT_(network)) and other [IEEE 802.15.4](https://en.wikipedia.org/wiki/IEEE_802.15.4) based protocols like [Thread](https://en.wikipedia.org/wiki/Thread_(network_protocol)), [Zigbee](https://en.wikipedia.org/wiki/Zigbee). It also support proprietary protocols like the one used by popular nRF24L01 modules.
+The one thing that distinguishes the nRF5 family from the other ARM based microcontrollers is its multiprotocol radio. It can handle Bluetooth LE, [ANT](https://en.wikipedia.org/wiki/ANT_(network)) and other [IEEE 802.15.4](https://en.wikipedia.org/wiki/IEEE_802.15.4) based protocols like [Thread](https://en.wikipedia.org/wiki/Thread_(network_protocol)), [Zigbee](https://en.wikipedia.org/wiki/Zigbee). It also supports proprietary protocols like the one used by popular nRF24L01 modules.
 
 The integrated radio peripheral with its -95 dBm Rx sensitivity and 8 dBm Tx power is impressive piece of RF technology. At the same time it's rather simple from the programmer point of view. It doesn't handle much more itself than sending and receiving packets, however the packet layout is very customizable.
 
@@ -198,7 +198,7 @@ cd $HOME/embeddedgo/nrf5/devboard/pca10059/examples/ble_blinky
 ../build-s140-7.sh
 ```
 
-The build-s140-7.sh script sets GOTEXT and GOMEM variables as required by S140 SoftDevice version 7. You can download the S140 SoftDevice from [Nordic website](https://cm.nordicsemi.com/Software-and-tools/Software/S140/Download) but for convenience it is also included in the embeddedgo/nrf5 repository:
+The [build-s140-7.sh](https://github.com/embeddedgo/nrf5/blob/master/devboard/pca10059/examples/build-s140-7.sh) script sets GOTEXT and GOMEM variables as required by S140 SoftDevice version 7. You can download the S140 SoftDevice from [Nordic website](https://cm.nordicsemi.com/Software-and-tools/Software/S140/Download) but for convenience it is also included in the embeddedgo/nrf5 repository:
 
 ```
 $ ls -o $HOME/embeddedgo/nrf5/softdevice/nordic/s140/hex
