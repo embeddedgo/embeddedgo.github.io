@@ -194,13 +194,13 @@ The video below shows our program in action:
 
 {::nomarkdown}
 <video width=640 height480 controls preload=auto>
-	<source src='{{site.baseur}}/videos/2019-12-08-playing_with_linear_accelerometer/video1.mp4' type='video/mp4'>
+	<source src='{{site.baseur}}/videos/playing_with_linear_accelerometer/video1.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
 <p></p>
 {:/}
 
-You can find the complete source code [here]({{ site.baseur }}/code/2019-12-08-playing_with_linear_accelerometer/listing1.html).
+You can find the complete source code [here]({{ site.baseur }}/code/playing_with_linear_accelerometer/listing1.html).
 
 This code works but contains a subtle bug that doesn't have a chance to reveal in case of relatively slow MCU. The following three sequences:
 
@@ -264,7 +264,7 @@ Now it's easier to see what's going on:
 
 {::nomarkdown}
 <video width=640 height480 controls preload=auto>
-	<source src='{{site.baseur}}/videos/2019-12-08-playing_with_linear_accelerometer/video2.mp4' type='video/mp4'>
+	<source src='{{site.baseur}}/videos/playing_with_linear_accelerometer/video2.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
 <p></p>
@@ -390,7 +390,7 @@ for {
 }
 ```
 
-The complete code is [here]({{ site.baseur }}/code/2019-12-08-playing_with_linear_accelerometer/listing2.html).
+The complete code is [here]({{ site.baseur }}/playing_with_linear_accelerometer/listing2.html).
 
 Another improvement of our simple program could be using the onboard LEDs
 instead of debug messages. We could transform our discovery board into some kind
