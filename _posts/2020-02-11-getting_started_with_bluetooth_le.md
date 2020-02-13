@@ -220,7 +220,10 @@ Click <em>Write</em> to start programming. If all went well the dongle will star
 <p></p>
 {:/}
 
-As you can see you can start to play with Bluetooth LE in Go even today. For now only the raw SoftDevice API is available. A more convenient interface that resembles net or net/http package should be created over it. The SoftDevice supports multiple connections, central and peripheral roles at the same time so the Go programmer expects familiar and easy to use interface that allow to handle multiple connections using multiple goroutines.
+As you can see you can start to play with Bluetooth LE in Go even today. For now
+only the raw SoftDevice API is available. A more convenient interface that
+resembles net or net/http package should be created over it. The SoftDevice
+supports multiple connections, central and peripheral roles at the same time so a Go programmer expects familiar and easy to use interface that allow to handle multiple connections using multiple goroutines.
 
 #### Using nrfutil
 
