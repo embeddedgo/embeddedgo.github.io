@@ -55,7 +55,10 @@ cs := pe.Pin(3)
 
 // Configure SPI pins
 
-spi1.UsePinsMaster(sck, mosi, miso)
+spi1.UsePinMaster(spi.SCK, sck)
+spi1.UsePinMaster(spi.MOSI, mosi)
+spi1.UsePinMaster(spi.MISO, miso)
+	
 cs.Set() // CS active state is low
 cs.Setup(&gpio.Config{Mode: gpio.Out})
 ```
