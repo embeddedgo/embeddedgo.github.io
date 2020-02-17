@@ -61,7 +61,7 @@ and start with a simple [blinky](https://github.com/embeddedgo/nrf5/blob/master/
 package main
 
 import (
-	"github.com/embeddedgo/x/time"
+	"time"
 
 	"github.com/embeddedgo/nrf5/devboard/pca10059/board/buttons"
 	"github.com/embeddedgo/nrf5/devboard/pca10059/board/leds"
