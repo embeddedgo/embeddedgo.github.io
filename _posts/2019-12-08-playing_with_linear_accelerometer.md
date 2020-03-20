@@ -58,7 +58,7 @@ cs := pe.Pin(3)
 spi1.UsePinMaster(spi.SCK, sck)
 spi1.UsePinMaster(spi.MOSI, mosi)
 spi1.UsePinMaster(spi.MISO, miso)
-	
+
 cs.Set() // CS active state is low
 cs.Setup(&gpio.Config{Mode: gpio.Out})
 ```
@@ -196,7 +196,7 @@ for {
 The video below shows our program in action:
 
 {::nomarkdown}
-<video width=640 height480 controls preload=auto>
+<video width=640 height=480 controls preload=auto>
 	<source src='{{site.baseur}}/videos/playing_with_linear_accelerometer/video1.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
@@ -266,7 +266,7 @@ func gauge(name string, v int) {
 Now it's easier to see what's going on:
 
 {::nomarkdown}
-<video width=640 height480 controls preload=auto>
+<video width=640 height=480 controls preload=auto>
 	<source src='{{site.baseur}}/videos/playing_with_linear_accelerometer/video2.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>

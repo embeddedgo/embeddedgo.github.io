@@ -167,7 +167,7 @@ If you have an older version you can program it with Texane's stlink
 or with OpenOCD:
 
 {::nomarkdown}
-<video width=640 height480 controls preload=auto>
+<video width=640 height=480 controls preload=auto>
 	<source src='{{site.baseur}}/videos/blinky-f4-discovery.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
@@ -242,7 +242,7 @@ func main() {
 and run it:
 
 {::nomarkdown}
-<video width=640 height480 controls preload=auto>
+<video width=640 height=480 controls preload=auto>
 	<source src='{{site.baseur}}/videos/blinky-f4-discovery_1.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>

@@ -175,7 +175,7 @@ TRACECLKIN=80000000
 and use it:
 
 {::nomarkdown}
-<video width=640 height480 controls preload=auto>
+<video width=640 height=480 controls preload=auto>
 	<source src='{{site.baseur}}/videos/irq1.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
@@ -195,7 +195,7 @@ func EXTI15_10_Handler() {
 As this IRQ is shared by six EXTI lines we read six pending bits and clear them all if set.
 
 {::nomarkdown}
-<video width=640 height480 controls preload=auto>
+<video width=640 height=480 controls preload=auto>
 	<source src='{{site.baseur}}/videos/irq2.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
@@ -372,7 +372,7 @@ The waitBtn function no longer waits for the first signal from the handler. Now 
 The buttonLED function now waits for the button to be pressed then toggles the LED and next waits for the button to be released as in polling algorithm from begginningo of this article. Now the button works perfectly:
 
 {::nomarkdown}
-<video width=640 height480 controls preload=auto>
+<video width=640 height=480 controls preload=auto>
 	<source src='{{site.baseur}}/videos/irq3.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>

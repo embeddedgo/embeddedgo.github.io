@@ -173,7 +173,7 @@ If you selected your dongle from drop-down menu then its current Flash content s
 Now we can program our blinky application. Add blinky.hex to the <em>File memory layout</em> using <em>Add HEX file</em> button and click <em>Write</em>. After programming the dongle should start blinking.
 
 {::nomarkdown}
-<video width=640 height480 controls preload=auto>
+<video width=640 height=480 controls preload=auto>
 	<source src='{{site.baseur}}/videos/getting_started_with_bluetooth_le/blinky-nrf52-dongle.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
@@ -213,7 +213,7 @@ Let's come back to the nRF Connect programmer, clear the previous file and add t
 Click <em>Write</em> to start programming. If all went well the dongle will start blinking green LED which means it advertising the <em>Nordic LED Button</em> service. To test it you can use [Android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp) or [iOS](https://apps.apple.com/pl/app/nrf-connect/id1054362403) version of <em>nRF Connect</em>. There is also a [nRF Blinky](https://play.google.com/store/apps/details?id=no.nordicsemi.android.nrfblinky) application for Android with its source code available on [github](https://github.com/NordicSemiconductor/Android-nRF-Blinky). The video bellow shows both applications in action.
 
 {::nomarkdown}
-<video width=640 height480 controls preload=auto>
+<video width=640 height=480 controls preload=auto>
 	<source src='{{site.baseur}}/videos/getting_started_with_bluetooth_le/ble_blinky-nrf52-dongle.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
