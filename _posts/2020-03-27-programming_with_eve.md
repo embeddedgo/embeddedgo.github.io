@@ -30,7 +30,7 @@ The following two videos are from Gameduino 2/3 Kickstarter campaigns. In the fi
 <p></p>
 {:/}
 
-At the end of this article you will be able to see one demo and one game from the first video. They are translated to Go and can run on any supported MCU.
+At the end of this article you can see one demo and one game from the first video. They are translated to Go and can run on any supported MCU.
 
 #### Embedded Video Engine
 
