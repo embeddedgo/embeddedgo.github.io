@@ -663,7 +663,7 @@ for {
 
 EVE supports something like procedure/function calling. The above code uses this feature. It writes the gopher drawing procedure to the end of both display list buffers only once during initialization. Then the [Call](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.Call) command is used to call it.
 
-The procedure starts with the [SaveContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.SaveContext) command and and ends with the [RestoreContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.RestoreContext) followed by [Return](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.Return) command. You cannot pass any arguments to the procedure but you can influence the operation of the procedure by modifying the graphics context.
+The procedure starts with the [SaveContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.SaveContext) command and ends with the [RestoreContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.RestoreContext) followed by [Return](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.Return) command. You cannot pass any arguments to the procedure but you can influence the operation of the procedure by modifying the graphics context. The above code modifies graphics context using the VertexTranslateX/Y and Cell commands to draw gophers in different places on the screen together with the touch number.
 
 #### Touch tag
 
