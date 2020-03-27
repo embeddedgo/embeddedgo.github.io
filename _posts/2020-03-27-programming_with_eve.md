@@ -24,7 +24,7 @@ The following two videos are from Gameduino 2/3 Kickstarter campaigns. In the fi
 
 {::nomarkdown}
 <video width=640 height=360 controls preload=auto>
-	<source src='https://v.kickstarter.com/1585394753_b9361d13a1ca6070a6e66254f9871478c10a5877/projects/2731577/video-837210-h264_high.mp4' type='video/mp4'>
+	<source src='https://v.kickstarter.com/1585456482_eac9d7d33bc6a6c6781155035ee498cbb5b3b414/projects/2731577/video-837210-h264_high.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
 <p></p>
