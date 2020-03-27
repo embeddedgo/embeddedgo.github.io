@@ -40,7 +40,7 @@ EVE is something like GPU for microcontrollers. It provides drawing interface si
 
 EVE does it for our MCU but uses only 3200 bytes for its internal framebuffer. How is it possible? It's possible because EVE renders the display list (scene in the OpenGL nomenclature) line by line during the LCD refresh.
 
-The display list can contain up to 2048 commands and is double-buffered in RAM of size 2 x 8 KB. A microcontroller can write basic commands like points, lines, rectangles, bitmaps, etc. directly to the inactive display list or use Co-processor Engine (CE) for high-level command like drawing buttons, scroll bars, progress bars, text strings, decompressing JPEG or PNG images, etc. The CE executes high-level commands and in effect writes basic display list commands to the inactive display list buffer or decompress data to the general purpose RAM. When the display list is ready the inactive and active buffers are swapped.
+The display list can contain up to 2048 commands and is double-buffered in RAM of size 2 x 8 KB. A microcontroller can write basic commands like points, lines, rectangles, bitmaps, etc. directly to the inactive display list or use Co-processor Engine (CE) for high-level commands like drawing buttons, scroll bars, progress bars, text strings, decompressing JPEG or PNG images, etc. The CE executes high-level commands and in effect writes basic display list commands to the inactive display list buffer or decompress data to the general purpose RAM. When the display list is ready the inactive and active buffers are swapped.
 
 There is 1 MB (256 KB in case of FT80x) of general purpose RAM (RAM_G), where you can store bitmaps, decompress JPEG and PNG images, setup video queues, store audio files, etc. As you can see the FT81x uses about 1050 KB of RAM for a lot of things instead of 1500 KB for only one framebuffer (you need two for double buffering).
 
@@ -159,12 +159,12 @@ $ go mod init evetutorial
 go: creating new go.mod: module evetutorial
 $ chmod a+x build.sh
 $ ./build.sh
-go: downloading github.com/embeddedgo/stm32 v0.4.3
-go: extracting github.com/embeddedgo/stm32 v0.4.3
-go: finding github.com/embeddedgo/stm32 v0.4.3
-go: downloading github.com/embeddedgo/display v0.1.4
-go: extracting github.com/embeddedgo/display v0.1.4
-go: finding github.com/embeddedgo/display v0.1.4
+go: downloading github.com/embeddedgo/stm32 v0.4.4
+go: extracting github.com/embeddedgo/stm32 v0.4.4
+go: finding github.com/embeddedgo/stm32 v0.4.4
+go: downloading github.com/embeddedgo/display v0.1.6
+go: extracting github.com/embeddedgo/display v0.1.6
+go: finding github.com/embeddedgo/display v0.1.6
 ```
 
 Success! But this code doesn't draw anything on the screen yet. Before we start drawing something  we will prepare load.sh script which we will use to write our program to the STM32 Flash:
@@ -220,19 +220,19 @@ The `ClearColorRGB(0x0000AA)` and `Clear(eve.CST)` commands instruct EVE to fill
 
 This image says a lot about how the rendering is done.
 
-Our display list draws two points on the screen. The `PointSize(60 * 16)` command specifies radius of the following points in 1/16 pixel precision. In the following display lists we will use `f(x)` instead of `x * 16` where f is defined as:
+Our display list draws two points on the screen. The `PointSize(60 * 16)` command specifies radius of the following points in 1/16 pixel precision. In the subsequent display lists we use `f(x)` instead of `x * 16` where f is defined as:
 
 ```
 func f(x int) int { return x * 16 }
 ```
 
-This will increase the readability of the presented code.
+This increases the readability of the presented code.
 
 The `Begin(eve.POINTS)` tells the graphics engine to start drawing points. The following vertex commands draw points with the given coordinates. There are two kinds of vertex commands.
 
 The first one is [Vertex2ii](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.Vertex2ii) which accept four arguments. First two are x ,y coordinates and the next two allow to specify bitmap handle and cell (more about them later). The second one is [Vertex2f](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.Vertex2f) which accepts only two arguments which are x, y coordinates in 1/16 pixel precision.
 
-The Vertex2ii accepts x, y coordinates from 0 to 511 only. It's a significant disadvantage in the case of 800x480 display. Despite this you can use Vertex2ii to draw on the whole screen (useful in case of bitmaps) thanks to the [VertexTranslateX](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.VertexTranslateX) and [VertexTranslateY](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.VertexTranslateY) commands.
+The Vertex2ii x, y coordinates can be in the range 0 to 511 only. It's a significant disadvantage in the case of 800x480 display. Despite this you can use Vertex2ii to draw on the whole screen (useful in case of bitmaps) thanks to the [VertexTranslateX](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.VertexTranslateX) and [VertexTranslateY](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.VertexTranslateY) commands.
 
 The `End()` command closes the drawing block started by Begin. It can be omitted in most cases.
 
@@ -381,9 +381,9 @@ dl.Display()
 dl.SwapDL()
 ```
 
-but the previous example shows that the bitmap defined by one display list can be used by another one. This is an example of the *global graphics state*. Every display list has also its local state called *graphics context*. The graphics context contains attributes like color, line width, point size, bitmap handle, bitmap cell, bitmap transform coefficients etc. You can save and restore the current graphics context on the context stack using [SaveContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.SaveContext) and [RestoreContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.RestoreContext) commands.
+but the previous example shows that the bitmap defined by one display list can be used by another one. This is an example of the *global graphics state*. Every display list has also its local state called *graphics context*. The graphics context contains attributes like color, line width, point size, bitmap handle, bitmap cell, bitmap transform coefficients, etc. You can save and restore the current graphics context on the context stack using [SaveContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.SaveContext) and [RestoreContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.RestoreContext) commands.
 
-You select the bitmap to draw by the handle assigned to it. There are 15 handle numbers from 0 to 14 available for programmer. The handle 15 is used as scratch bitmap handle by co-processor engine and handles from 16 to 31 are used for built-in fonts. One handle can represent multiple bitmaps with the same layout located in the memory one after another. The cell parameter is used to select one of them.
+You select the bitmap to draw using handle assigned to it. There are 15 handle numbers from 0 to 14 available for programmer. The handle 15 is used as scratch bitmap handle by co-processor engine and handles from 16 to 31 are used for built-in fonts. One handle can represent multiple bitmaps with the same layout located in the memory one after another. The cell parameter is used to select one of them.
 
 Our bitmap is an example of the L1 format where every pixel can be only opaque or transparent. But we can draw it in different colors:
 
@@ -661,7 +661,7 @@ for {
 <p></p>
 {:/}
 
-EVE supports something like procedure/function calling. The above code uses this feature. It writes the gopher drawing procedure the end of both display list buffers only once during initialization. Then the [Call](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.Call) command is used to call it.
+EVE supports something like procedure/function calling. The above code uses this feature. It writes the gopher drawing procedure to the end of both display list buffers only once during initialization. Then the [Call](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.Call) command is used to call it.
 
 The procedure starts with the [SaveContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.SaveContext) command and and ends with the [RestoreContext](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.RestoreContext) followed by [Return](https://pkg.go.dev/github.com/embeddedgo/display/eve?tab=doc#DL.Return) command. You cannot pass any arguments to the procedure but you can influence the operation of the procedure by modifying the graphics context.
 
@@ -769,6 +769,6 @@ The [second one](https://github.com/embeddedgo/display/tree/master/eve/examples/
 <p></p>
 {:/}
 
-They are written for 480x272 display. 
+They are written for 480x272 display.
 
 *Michał Derkacz*
