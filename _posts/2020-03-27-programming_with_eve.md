@@ -16,7 +16,7 @@ The following two videos are from Gameduino 2/3 Kickstarter campaigns. In the fi
 
 {::nomarkdown}
 <video width=640 height=362 controls preload=auto>
-	<source src='https://v.kickstarter.com/1585474350_b849ac74463a5712585aff53e44d899475dd9545/projects/689866/video-299684-h264_high.mp4' type='video/mp4'>
+	<source src='{{site.baseur}}/videos/programming_with_eve/gameduino2.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
 <p></p>
@@ -24,7 +24,7 @@ The following two videos are from Gameduino 2/3 Kickstarter campaigns. In the fi
 
 {::nomarkdown}
 <video width=640 height=360 controls preload=auto>
-	<source src='https://v.kickstarter.com/1585456482_eac9d7d33bc6a6c6781155035ee498cbb5b3b414/projects/2731577/video-837210-h264_high.mp4' type='video/mp4'>
+	<source src='{{site.baseur}}/videos/programming_with_eve/gameduino3.mp4' type='video/mp4'>
 	Sorry, your browser doesn't support embedded videos.
 </video>
 <p></p>
