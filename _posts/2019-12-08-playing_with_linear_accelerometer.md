@@ -393,7 +393,7 @@ for {
 }
 ```
 
-The complete code is [here]({{ site.baseur }}/playing_with_linear_accelerometer/listing2.html).
+The complete code is [here]({{ site.baseur }}/code/playing_with_linear_accelerometer/listing2.html).
 
 Another improvement of our simple program could be using the onboard LEDs
 instead of debug messages. We could transform our discovery board into some kind
