@@ -165,7 +165,7 @@ read := func(addr uint8) byte {
 
 // Startup sequence
 
-rtos.Nanosleep(10e6 - rtos.Nanotime())
+time.Sleep(10*time.Millisecond - rtos.Nanotime())
 write(CTRL_REG4, 0x67)
 write(CTRL_REG3, 0xC8)
 
@@ -236,7 +236,7 @@ func show(x, y, z int) {
 	gauge("y", y)
 	gauge("z", z)
 	print("+-----------------------------------------+\n")
-	rtos.Nanosleep(100e6)
+	time.Sleep(100*time.Millisecond)
 }
 
 func gauge(name string, v int) {
@@ -338,7 +338,7 @@ func NewLIS3DSH(d *spi.Driver, cs gpio.Pin, dri exti.Lines) *LIS3DSH {
 }
 
 func (a *LIS3DSH) Init() {
-	rtos.Nanosleep(10e6 - rtos.Nanotime())
+	time.Sleep(10*time.Millisecond - rtos.Nanotime())
 	a.cs.Clear()
 	a.d.WriteRead([]byte{CTRL_REG4, 0x67}, nil)
 	a.cs.Set()

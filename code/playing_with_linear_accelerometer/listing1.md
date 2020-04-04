@@ -1,6 +1,7 @@
 ```go
 import (
 	"embedded/rtos"
+	"time"
 
 	"github.com/embeddedgo/stm32/hal/gpio"
 	"github.com/embeddedgo/stm32/hal/spi"
@@ -67,7 +68,7 @@ func main() {
 
 	// Startup sequence
 
-	rtos.Nanosleep(10e6 - rtos.Nanotime())
+	time.Sleep(10*time.Millisecond - rtos.Nanotime())
 	write(CTRL_REG4, 0x67)
 	write(CTRL_REG3, 0xC8)
 
