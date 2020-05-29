@@ -82,7 +82,7 @@ func main() {
 	spi1.UsePinMaster(spi.SCK, sck)
 	spi1.UsePinMaster(spi.MOSI, mosi)
 	spi1.UsePinMaster(spi.MISO, miso)
-	
+
 	cs.Set() // CS active state is low
 	cs.Setup(&gpio.Config{Mode: gpio.Out, Speed: gpio.High})
 
@@ -92,7 +92,7 @@ func main() {
 	dri := exti.Lines(1 << dr.Index())
 	dri.Connect(dr.Port())
 	dri.EnableRiseTrig()
-	irq.EXTI0.Enable(rtos.IntPrioLow)
+	irq.EXTI0.Enable(rtos.IntPrioLow, -1)
 
 	// Configure and enable SPI
 
