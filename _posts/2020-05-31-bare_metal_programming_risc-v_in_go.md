@@ -30,7 +30,7 @@ If you want to play with real RISC-V hardware you don't have much choice today. 
 
 - [GigaDevice](https://www.gigadevice.com/), they provide very cheap RISC-V based [GD32V microcontrollers](https://www.gigadevice.com/products/microcontrollers/gd32/risc-v/) (development boards are provided by [SeedStudio](https://www.seeedstudio.com/SeeedStudio-GD32-RISC-V-Dev-Board-p-4302.html), [Sipeed](https://longan.sipeed.com/en/) and others),
 
-- and finally [Kendryte](https://kendryte.com/) with their [K210](https://s3.cn-north-1.amazonaws.com.cn/dl.kendryte.com/documents/kendryte_datasheet_20181011163248_en.pdf) chip and development boards/modules provided by [Sipeed](https://www.sipeed.com/).
+- and finally [Kendryte](https://kendryte.com/) ([Canaan](https://www.canaan.io/)) with their [K210](https://s3.cn-north-1.amazonaws.com.cn/dl.kendryte.com/documents/kendryte_datasheet_20181011163248_en.pdf) chip and development boards/modules provided by [Sipeed](https://www.sipeed.com/).
 
 You can buy the Maix Bit board as seen above for about $13 or the whole kit with camera and LCD for about $21.
 
