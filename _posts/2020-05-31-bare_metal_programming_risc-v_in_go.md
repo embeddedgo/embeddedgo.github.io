@@ -142,7 +142,7 @@ Programming BIN: |============================================| 100.0% 38kiB/s
 <p></p>
 {:/}
 
-The developement of Go on Kendryte K210 takes place on [github.com/embeddedgo/kendryte](https://github.com/embeddedgo/kendryte). Your can clone the repository and try the other examples. Any help in developing this project is appreciated.
+The developement of Go on Kendryte K210 takes place on [github.com/embeddedgo/kendryte](https://github.com/embeddedgo/kendryte). You can clone the repository and try the other examples. Any help in developing this project is appreciated.
 
 ```
 $ git clone https://github.com/embeddedgo/kendryte
@@ -203,5 +203,7 @@ From the left tho the right:
 **C** camera connector,
 
 **D** LCD connector.
+
+There is also a Micro SD card slot on the other side of the board.
 
 *Michał Derkacz*
