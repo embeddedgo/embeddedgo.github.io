@@ -176,9 +176,9 @@ At the end I will describe briefly the Maix Bit v2 development board.
 
 ![Maix Bit explained]({{site.baseur}}/images/bare_metal_risc-v_programming_in_go/maix_bit_num.jpg)
 
-From the left tho the right:
+From the left to the right:
 
-**1** USB-C connector, connected to the CH552, can be used to power the board, program it and communicate with K210 through UART3,
+**1** USB-C connector, connected to the CH552, can be used to power the board, program it and communicate with K210 through UART,
 
 **2** BOOT/USER button, pressed during reset starts the bootloader in programming mode, you can read its state in your code,
 
