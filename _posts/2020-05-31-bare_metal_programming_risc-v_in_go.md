@@ -10,7 +10,7 @@ tags: go embeddedgo risc-v kendryte k210
 
 For a couple of weeks I've worked on adding support for bare metal RISC-V programming to Go. As the noos/riscv64 port reached the usable level I've decided to write something about it.
 
-Until now, the [Embeddeg Go](https://github.com/embeddedgo) have supported only ARM microcontrollers. I wanted to add another architecture as soon as possible to revise the design choices. From very beggining I've considered to add support for the very popular WiFi capable [ESP32](https://www.espressif.com/en/products/socs/esp32/overview) microcontroller and even finished studying the Xtensa LX6 ISA but in the meantime two things happened:
+Until now, the [Embedded Go](https://github.com/embeddedgo) have supported only ARM microcontrollers. I wanted to add another architecture as soon as possible to revise the design choices. From very beggining I've considered to add support for the very popular WiFi capable [ESP32](https://www.espressif.com/en/products/socs/esp32/overview) microcontroller and even finished studying the Xtensa LX6 ISA but in the meantime two things happened:
 
 - the support for linux/riscv64 [landed in Go compiler](https://golang.org/doc/go1.14#riscv),
 
