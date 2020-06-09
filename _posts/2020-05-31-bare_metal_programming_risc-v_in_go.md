@@ -188,7 +188,7 @@ From the left to the right:
 
 **5** RGB LED,
 
-**6** CH552 MCU, presents itself as FTDI FT2232H USB to UART converter, has ability to reset the K210 chip,
+**6** CH552 MCU, presents itself as FTDI FT2232H USB to UART converter, has ability to reset the K210 chip and control its BOOT pin,
 
 **7** MEMS microphone,
 
