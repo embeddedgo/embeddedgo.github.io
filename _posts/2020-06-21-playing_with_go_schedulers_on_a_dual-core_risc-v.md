@@ -18,7 +18,7 @@ func newosproc(mp *m) {
 
 But if you want to run a bare metal Go program on multiple cores the thread abstraction is a must, unless you are ready to implement a completely new goroutine scheduler.
 
-The goroutine scheduler uses operating system threads as workhorses to execute its goroutines. The goal is to efficiently run thousands of goroutines using only a few OS threads. Threads are considered expensive. There is also much cheaper to access shared resources by multiple goroutines that run on the same thread. This is further optimized in Go by introducing the concept of a logical processor (called P) that has local cache of the most commonly used resources and can "execute" only one thread at the same time. At the sane time there can be unlimited number of threads sleeping in the system calls.
+The goroutine scheduler uses operating system threads as workhorses to execute its goroutines. The goal is to efficiently run thousands of goroutines using only a few OS threads. Threads are considered expensive. There is also much cheaper to access shared resources by multiple goroutines that run on the same thread. This is further optimized in Go by introducing the concept of a logical processor (called P) that has local cache of the most commonly used resources and can "execute" only one thread at a time. At the sane time there can be unlimited number of threads sleeping in the system calls.
 
 You can set number of logical processors using [GOMAXPROCS](https://golang.org/pkg/runtime) environment variable or [runtime.GOMAXPROCS](https://golang.org/pkg/runtime/#GOMAXPROCS) function. The default GOMAXPROCS for [Kendryte K210]({{site.baseurl}}/2020/05/31/bare_metal_programming_risc-v_in_go.html) is 2.
 
