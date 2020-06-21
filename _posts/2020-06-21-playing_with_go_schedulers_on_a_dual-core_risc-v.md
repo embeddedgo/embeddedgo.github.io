@@ -127,7 +127,7 @@ As before we can check does it's the same as the current one.
 $2 = 0x80062220
 ```
 
-Almost the same (LSBit is used to save *fromThread* flag).
+Almost the same (LSBit is used to store *fromThread* flag).
 
 ```
 (gdb) list *0x80062220
@@ -277,7 +277,7 @@ The beginning looks interesting:
  0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 ```
 
-It seems that almost all reporting threads start on hart 0 but after a while they migrate to hart 1 and stay there.
+It seems that almost all reporting goroutines start on hart 0 but after a while they migrate to hart 1 and stay there.
 
 Remember the goroutine scheduler can't run more than 2 goroutines at the same time. Our reporting goroutines don't do much. They spend most of their time sleeping on the full channel. It seems reasonable to gather them all on one P and give the other P for busy main thread.
 
