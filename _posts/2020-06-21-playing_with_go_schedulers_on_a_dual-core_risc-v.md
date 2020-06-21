@@ -306,7 +306,7 @@ TEXT ·hartid(SB),NOSPLIT|NOFRAME,$0
 	RET
 ```
 
-The `print(" ", hartid())` call has been changed to `print(hid>>1, hid&1)` to show both numbers next to each other.
+The `print(" ", hartid())` call has been changed to `print(" ", hid>>1, hid&1)` to show both numbers next to each other.
 
 {::nomarkdown}
 <video width=640 height=480 controls preload=auto>
