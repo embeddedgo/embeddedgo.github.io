@@ -341,7 +341,7 @@ You can find the full code for this last case on [github](https://github.com/emb
 <p></p>
 {:/}
 
-Workload disturbs the stable state from the second example. We can observe quite long periods when all goroutines run on the same logical processor which may be disturbing.
+Workload disturbs the stable state from the second example. We can observe quite long periods when all goroutines run on the same logical processor which may be disturbing. *Edit: It doesn't have to be true. We print the whole line after each report received so it takes some lines to print a global change which affects many/all goroutines*.
 
 #### Summary
 
