@@ -300,13 +300,13 @@ TEXT ·hartid(SB),NOSPLIT|NOFRAME,$0
 	MOV   48(g), A0    // g.m
 	MOV   160(A0), A0  // m.p
 	MOVW  (A0), S1     // p.id
-	SLL   $1, S1
+	SLL   $8, S1
 	OR    S1, S0
 	MOV   S0, ret+0(FP)
 	RET
 ```
 
-The `print(" ", hartid())` call has been changed to `print(" ", hid>>1, hid&1)` to show both numbers next to each other.
+The `print(" ", hartid())` call has been changed to `print(" ", hid>>8, hid&0xFF)` to show both numbers next to each other.
 
 {::nomarkdown}
 <video width=640 height=480 controls preload=auto>
