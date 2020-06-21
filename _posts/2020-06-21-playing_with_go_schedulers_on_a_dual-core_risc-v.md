@@ -2,6 +2,7 @@
 layout: post
 title: Playing with Go schedulers on a dual-core RISC-V
 tags: go golang embeddedgo risc-v kendryte k210
+image: images/playing_with_go_schedulers_on_a_dual-core_risc-v/dual-core_go.png
 ---
 
 ![Kendryte & Go]({{site.baseurl}}/images/playing_with_go_schedulers_on_a_dual-core_risc-v/dual-core_go.png)
