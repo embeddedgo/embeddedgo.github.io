@@ -27,13 +27,11 @@ You can set number of logical processors using [GOMAXPROCS](https://golang.org/p
 
 The Embedded Go implements a thread scheduler for GOOS=noos called [tasker](https://github.com/embeddedgo/go/blob/embedded/src/runtime/tasker_noos.go). Tasker was designed from the very beginning as a multi-core scheduler but the first multicore tests and bug fixes were done on K210 while working on *noos/riscv64* port.
 
-Tasker is tightly coupled to the [goroutine scheduler](https://github.com/golang/go/blob/release-branch.go1.14/src/runtime/proc.go). It doesn't have it's own representation of thread. Instead it directly uses the [m structs](https://github.com/golang/go/blob/release-branch.go1.14/src/runtime/runtime2.go#L473) obtained from goroutine scheduler. The Go logical processor concept is taken seriously. Any available P is associated with a specific CPU using the following simple formula:
+Tasker is tightly coupled to the [goroutine scheduler](https://github.com/golang/go/blob/release-branch.go1.14/src/runtime/proc.go). It doesn't have it's own representation of thread. Instead it directly uses the [m structs](https://github.com/golang/go/blob/release-branch.go1.14/src/runtime/runtime2.go#L473). The Go logical processor concept is taken seriously. Any available P is associated with a specific CPU using the following simple formula:
 
 ```go
 cpuid = P.id % len(allcpus)
 ```
-
-As you can see, when choosing a CPU for thread the tasker [relies on the goroutine scheduler decision](https://github.com/embeddedgo/go/blob/2db1fdb0d000ee94a737c9384e0b6bb8001a5c21/src/runtime/tasker_noos.go#L170).
 
 CPU is the name used by the tasker for any independent hardware thread of execution, a *hart* in the [RISC-V](https://en.wikipedia.org/wiki/RISC-V) nomenclature.
 
