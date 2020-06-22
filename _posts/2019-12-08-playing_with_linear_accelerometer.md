@@ -320,7 +320,7 @@ dr.Setup(&gpio.Config{Mode: gpio.In})
 dri := exti.Lines(1 << dr.Index())
 dri.Connect(dr.Port())
 dri.EnableRiseTrig()
-irq.EXTI0.Enable(rtos.IntPrioLow, -1)
+irq.EXTI0.Enable(rtos.IntPrioLow, 0)
 ```
 
 The code below is a very simple driver for the LIS3DSH accelerometer:

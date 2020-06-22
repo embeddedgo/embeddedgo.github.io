@@ -109,7 +109,7 @@ func main() {
 
 	// connect intn pin to EXTI for detection of EVE interrupts
 	evedci.UseIntPin(intn)
-	irq.EXTI1.Enable(rtos.IntPrioLowest, -1)
+	irq.EXTI1.Enable(rtos.IntPrioLowest, 0)
 
 	// connect csn, sck, mosi, miso pins to SPI2
 	spi2.UsePinMaster(spi.NSS, csn)

@@ -107,7 +107,7 @@ func main() {
 	// Enable interrupt source in the Cortex-M NVIC. The EXTI15_10 is an
 	// IRQ number that corresponds to the EXTI line numbers from 10 to 15
 	// (Nucleo board). In case of F4-Discovery it will be EXTI0.
-	irq.EXTI15_10.Enable(rtos.IntPrioLow, -1)
+	irq.EXTI15_10.Enable(rtos.IntPrioLow, 0)
 
 	for {
 		println("i am alive")
@@ -127,7 +127,7 @@ func EXTI15_10_Handler() {
 
 If you want to follow the subsequent steps you have to save this code in the `$HOME/irqtest/main.go` file.
 
-I think the comments in the code clearly describe each step of EXTI configuration. Additional explanation may be needed for `irq.EXTI15_10.Enable(rtos.IntPrioLow, -1)` statement. This call enables an interrupt source in the Cortex-M interrupt controller called NVIC. In our case one IRQ number in NVIC is shared by six EXTI lines.
+I think the comments in the code clearly describe each step of EXTI configuration. Additional explanation may be needed for `irq.EXTI15_10.Enable(rtos.IntPrioLow, 0)` statement. This call enables an interrupt source in the Cortex-M interrupt controller called NVIC. In our case one IRQ number in NVIC is shared by six EXTI lines.
 
 The `EXTI15_10_Handler` function will be called on every EXTI15_10 interrupt. Because only the line 13 is enabled we don't need to check which line caused the interrupt.
 
@@ -248,7 +248,7 @@ func main() {
 	line := exti.Lines(1 << pin.Index())
 	line.Connect(pin.Port())
 	line.EnableRiseTrig()
-	irq.EXTI15_10.Enable(rtos.IntPrioLow, -1)
+	irq.EXTI15_10.Enable(rtos.IntPrioLow, 0)
 
 	go buttonLED()
 
@@ -314,7 +314,7 @@ func main() {
 	line.Connect(pin.Port())
 	line.EnableRiseTrig()
 	line.EnableFallTrig()
-	irq.EXTI15_10.Enable(rtos.IntPrioLow, -1)
+	irq.EXTI15_10.Enable(rtos.IntPrioLow, 0)
 
 	go buttonLED()
 
