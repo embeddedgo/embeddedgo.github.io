@@ -277,7 +277,9 @@ The beginning looks interesting:
  0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 ```
 
-It seems that almost all reporting goroutines start on hart 0 but after a while they migrate to hart 1 and stay there.
+It seems that almost all reporting goroutines start on hart 0 but after a while
+they migrate to hart 1 and stay there. *Edit. It doesn't have to be true because the lasthart array is zero initialized. It should be initialized to something
+other value, eg: -1.*
 
 Remember the goroutine scheduler can't run more than 2 goroutines at the same time. Our reporting goroutines don't do much. They spend most of their time sleeping on the full channel. It seems reasonable to gather them all on one P and give the other P for busy main thread.
 
