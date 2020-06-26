@@ -318,9 +318,9 @@ The `print(" ", hartid())` call has been changed to `print(" ", hid>>8, hid&0xFF
 <p></p>
 {:/}
 
-As you can see the goroutine scheduler keeps the main goroutine on P=0,1 and reporting goroutines on P=2,3. Our simple rule that maps Ps to CPUs causes threads to jump between K210 cores.
+As you can see the goroutine scheduler keeps the main goroutine on P=0,1 and reporting goroutines on P=2,3. Our simple rule that maps Ps to CPUs causes threads to jumping between K210 cores.
 
-Ending this article let's get back to two P's but let's give our reporting goroutines something to do. As we've already got some practice with Go assembly we will use it to write simple busy loop. Thanks to this we'll be sure the compiler won't optimize this code.
+Ending this article let's get back to two Ps but let's give our reporting goroutines something to do. As we've already got some practice with Go assembly we will use it to write simple busy loop. Thanks to this we'll be sure the compiler won't optimize this code.
 
 ```
 // func loop(n int)
@@ -347,6 +347,6 @@ Workload disturbs the stable state from the second example. We can observe quite
 
 #### Summary
 
-It's hard to draw any deeper conclusions from these superficial tests. It wasn't the purpose of this article. We have some fun with Go, RISC-V assembler, debugger and underlying hardware which is what you can expect from bare-metal programming. It seems the goroutine scheduler and tasker both work in harmony with each other. A more strict approach is needed to draw more definitive conclusions that can be used to improve one or the other.
+It's hard to draw any deeper conclusions from these superficial tests. It wasn't the purpose of this article. We had some fun with Go, RISC-V assembler, debugger and underlying hardware which is what you can expect from bare-metal programming. It seems the goroutine scheduler and tasker both work in harmony with each other. A more strict approach is needed to draw more definitive conclusions that can be used to improve one or the other.
 
 *Michał Derkacz*
