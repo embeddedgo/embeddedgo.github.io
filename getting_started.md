@@ -41,3 +41,5 @@ git clone https://github.com/embeddedgo/go goroot
 cd goroot/src
 ./make.bash
 ```
+
+Ask questions on [Embedded Go Group](https://groups.google.com/forum/#!forum/embeddedgo).
