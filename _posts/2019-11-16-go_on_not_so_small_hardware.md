@@ -10,7 +10,7 @@ tags: mcu go embeddedgo
 
 ### Introduction
 
-The title of this article refers to my earlier article: [Go on very small hardware](https://ziutek.github.io/2018/03/30/go_on_very_small_hardware.html), where I described the [Emgo](https://github.com/ziutek/emgo), Go-like lanuage based on Go to C translation. Now I want to introduce the logical next setp: the port of the [Go reference compiler](https://golang.org/) (gc) to the *not so small* microcontrollers. What does "not so small" mean will turn out later in this article.
+The title of this article refers to my earlier article: [Go on very small hardware](https://ziutek.github.io/2018/03/30/go_on_very_small_hardware.html), where I described the [Emgo](https://github.com/ziutek/emgo), Go-like language based on Go to C translation. Now I want to introduce the logical next step: the port of the [Go reference compiler](https://golang.org/) (gc) to the *not so small* microcontrollers. What does "not so small" mean will turn out later in this article.
 
 Over the past dozen months I was concurrently involved in several hobby projects. One of them was an attempt to add support for [ARMv7-M](https://en.wikipedia.org/wiki/ARM_architecture) instruction set to the Go compiler, with the vague hope that the next step will be slimming down the Go runtime to the size suitable for microcontrollers.
 
