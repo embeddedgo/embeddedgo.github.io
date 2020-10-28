@@ -259,16 +259,12 @@ Some tests for linux/thumb still fail. They are all related to trecebacks and th
 
 The os package is not ported yet. We have GOOS set to *noos* and I'm still not sure how to approach this. This is rather philosophical (less technical) problem and requires some reflection. We probably need something like a virtual file system but the case remains open.
 
-~~All packages that require the os package (directly or indirectly) will not work. In particular this applies to the time package~~ *Update 2020-02-17: there is a stub implementation of os and syscall packages that allows to compile other ones*. There is a [port of time package](https://github.com/embeddedgo/x/tree/master/time) from Emgo which you can use in place of the original one:
+~~All packages that require the os package (directly or indirectly) will not
+work. In particular this applies to the time package. There is a [port of time
+package](https://github.com/embeddedgo/x/tree/master/time) from Emgo which you
+can use in place of the original one.~~
 
-```
-cd $HOME/embeddedgo
-git clone https://github.com/embeddedgo/x.git
-cd $HOME/goroot/src
-mv time time-org
-cp -r $HOME/embeddedgo/x/time .
-```
-
-You can use git commands to easly revert any change so experiment without fear.
+*Update 2020-02-17: there is a stub implementation of os and syscall packages
+that so the time and other packages now work.*
 
 *Michał Derkacz*
