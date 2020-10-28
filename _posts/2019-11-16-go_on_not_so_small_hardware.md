@@ -55,7 +55,7 @@ The following commands will add the noos/thumb target to your Go compiler:
 ```
 cd $HOME/goroot
 git checkout go1.15.3
-patch -p1 < $HOME/embeddedgo/patch/go1.15.3
+patch -p1 < $HOME/embeddedgo/patch/go1.15.3-1
 cd src
 ./make.bash
 ```
