@@ -55,7 +55,7 @@ The following commands will add the noos/thumb target to your Go compiler:
 ```
 cd $HOME/goroot
 git checkout go1.15.6
-patch -p1 < $HOME/embeddedgo/patch/go1.15.6
+patch -p1 < $HOME/embeddedgo/patch/go1.15.6-1
 cd src
 ./make.bash
 ```
@@ -82,10 +82,11 @@ As every devboard from ST the F4-Discovery includes ST-LINK programmer so you ca
 
 The hardware part of the programmer is done but we still neeed to handle the software part. You need to install [OpenOCD](http://openocd.org/) or [Texane's stlink](https://github.com/texane/stlink) and in case of Linux add some [udev rules](https://github.com/embeddedgo/doc/blob/master/stlink.rules).
 
-It is also advisable (required for Texane's stlink) to install binary utilities for ARM Cortex-A/R/M processors:
+It is also advisable (required for Texane's stlink) to install binary utilities
+with support for ARM Thumb2 instruction set:
 
 ```
-apt install binutils-arm-none-eabi
+apt install binutils-multiarch
 ```
 
 #### Building the example program
@@ -174,7 +175,7 @@ or with OpenOCD:
 As you've probably noticed, loading takes some time. The ST-LINK isn't the fastest programmer under the sun but let's see where it really comes from:
 
 ```
-$ arm-none-eabi-size blinky.elf
+$ size blinky.elf
    text	   data	    bss	    dec	    hex	filename
  567244	   2560	  11024	 580828	  8dcdc	blinky.elf
 ```
@@ -184,7 +185,7 @@ And now we can tell what *not so small* means, at least when it comes to Flash. 
 Let's compare this with a [similar program in Emgo](https://github.com/ziutek/emgo/tree/master/egpath/src/stm32/examples/f4-discovery/blinky/main.go):
 
 ```
-$ arm-none-eabi-size cortexm4f.elf
+$ size cortexm4f.elf
    text    data     bss     dec     hex filename
   10776     180     180   11136    2b80 cortexm4f.elf
 ```
@@ -192,7 +193,7 @@ $ arm-none-eabi-size cortexm4f.elf
 The difference is significant. Let's see what eats our Flash:
 
 ```
-$ arm-none-eabi-nm -S --size-sort blinky.elf |tail
+$ nm -S --size-sort blinky.elf |tail
 08012028 000006b8 T runtime.(*mspan).sweep
 0803196c 0000074c T internal/reflectlite.haveIdenticalUnderlyingType
 080560e8 0000075c r runtime.typelink
