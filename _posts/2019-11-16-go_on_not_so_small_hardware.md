@@ -172,7 +172,7 @@ or with OpenOCD:
 </video>
 {:/}
 
-As you've probably noticed, loading takes some time. The ST-LINK isn't the fastest programmer under the sun but let's see where it really comes from:
+As you've probably noticed, loading takes some time. The ST-LINK isn't the fastest programmer under the sun but let's see what really causes such slow programming:
 
 ```
 $ size blinky.elf
@@ -180,9 +180,9 @@ $ size blinky.elf
  567244	   2560	  11024	 580828	  8dcdc	blinky.elf
 ```
 
-And now we can tell what *not so small* means, at least when it comes to Flash. As you can see the smallest MCU you can consider should have 640 KB of Flash (our Discovery board has 1MB).
+Now we can tell what *not so small* means, at least when it comes to Flash. As you can see the smallest MCU you can consider should have 640 KB of Flash (our Discovery board has 1 MB).
 
-Let's compare this with a [similar program in Emgo](https://github.com/ziutek/emgo/tree/master/egpath/src/stm32/examples/f4-discovery/blinky/main.go):
+Let's compare this with a [similar Emgo program](https://github.com/ziutek/emgo/tree/master/egpath/src/stm32/examples/f4-discovery/blinky/main.go):
 
 ```
 $ size cortexm4f.elf
