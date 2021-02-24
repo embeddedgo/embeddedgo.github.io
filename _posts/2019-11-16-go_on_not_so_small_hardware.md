@@ -54,12 +54,12 @@ The following commands will add the noos/thumb target to your Go compiler:
 
 ```
 cd $HOME/goroot
-git checkout go1.15.6
-patch -p1 < $HOME/embeddedgo/patch/go1.15.6-5
+git checkout go1.15.8
+patch -p1 < $HOME/embeddedgo/patch/go1.15.8
 cd src
 ./make.bash
 ```
-Now you have the ready to use go1.15.6 with added support for linux/thumb, noos/thumb, noos/riscv64 GOOS/GOARCH pairs. You can run tests for your native architecture to ensure that nothing was broken:
+Now you have the ready to use go1.15.8 with added support for linux/thumb, noos/thumb, noos/riscv64 GOOS/GOARCH pairs. You can run tests for your native architecture to ensure that nothing was broken:
 
 ```
 ./run.bash --no-rebuild
