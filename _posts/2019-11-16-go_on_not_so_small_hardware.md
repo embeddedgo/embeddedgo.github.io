@@ -252,11 +252,11 @@ convince anyone that it's a very useful feature. You need to install [itmsplit](
 
 ### How complete is this port?
 
-The compiler, assembler, disassembler, linker and runtime are all usable but still not tested too much. There is no support for FPU but should be quite easy to do. The compiler recognizes three GOARM values: 7: soft-float (default), 7F, 7D: reserved for two floating-point modes.
+~~The compiler, assembler, disassembler, linker and runtime are all usable but still not tested too much. There is no support for FPU but should be quite easy to do.~~ The compiler recognizes three GOARM values: 7: soft-float (default), 7F, 7D: reserved for two floating-point modes.
 
-There is `//go:interrupthandler` pragma that allows to write interrupt handlers in Go. This pragma and `rtos.Note` type allows to write interrupt driven drivers for built-in peripherals. The programming environment seems to be ready but bugs can be anywhere :)
+There is a `//go:interrupthandler` pragma that allows to write interrupt handlers in Go. This pragma and an `rtos.Note` type allows to write interrupt driven drivers for built-in peripherals. The programming environment seems to be ready but bugs can be anywhere :)
 
-Some tests for linux/thumb still fail. They are all related to trecebacks and the problem probably lies in the fact that in Thumb mode the function address in memory differs from its call addres (the LSBit in the call addres is set). I fixed many such tests but those few I leave for later.
+Some tests for linux/thumb still fail. They are all related to trecebacks and the problem lies in the fact that in Thumb mode the function address in memory differs from its call addres (the LSBit in the call addres is set). I fixed many such tests but few of them are still unhandled.
 
 ~~The os package is not ported yet. We have GOOS set to *noos* and I'm still not sure how to approach this. This is rather philosophical (less technical) problem and requires some reflection. We probably need something like a virtual file system but the case remains open.~~
 
@@ -265,9 +265,11 @@ work. In particular this applies to the time package. There is a [port of time
 package](https://github.com/embeddedgo/x/tree/master/time) from Emgo which you
 can use in place of the original one.~~
 
-*Update 2020-02-17: there is a stub implementation of os and syscall packages
-that so the time and other packages now work.*
+*Update 2020-02-17: there is a stub implementation of os and syscall packages so the time and other packages now work.*
 
-*Update 2020-12-18: there is a virtual file sytem implemented. You can mount different file sytems using `rtos.Mount` method and use all functions from os package (see [github.com/embeddedgo/fs](https://github.com/embeddedgo/fs) for example filesystems)*
+*Update 2020-12-18: there is a virtual file system implemented. You can mount different file sytems using `rtos.Mount` method and use all functions from os package (see [github.com/embeddedgo/fs](https://github.com/embeddedgo/fs) for example filesystems)*
+
+*Update 2021-02-24: the generation of floating-point instructions is supported but only if the FPU supports both 32-bit and 64-bit operations (Kendryte K210, STM32H7). Use soft-float mode if the FPU supports only 32-bit instructions (STM32F4, STM32L4)'.*
+
 
 *Michał Derkacz*
