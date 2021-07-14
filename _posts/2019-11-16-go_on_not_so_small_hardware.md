@@ -54,18 +54,18 @@ The following commands will add the noos/thumb target to your Go compiler:
 
 ```
 cd $HOME/goroot
-git checkout go1.15.8
-patch -p1 < $HOME/embeddedgo/patch/go1.15.8
+git checkout go1.16.6
+patch -p1 < $HOME/embeddedgo/patch/go1.16.6
 cd src
 ./make.bash
 ```
-Now you have the ready to use go1.15.8 with added support for linux/thumb, noos/thumb, noos/riscv64 GOOS/GOARCH pairs. You can run tests for your native architecture to ensure that nothing was broken:
+Now you have the ready to use go1.16.6 with added support for linux/thumb, noos/thumb, noos/riscv64 GOOS/GOARCH pairs. You can run tests for your native architecture to ensure that nothing was broken:
 
 ```
 ./run.bash --no-rebuild
 ```
 
-You can always revert all changes and return back to the clean go1.15.6 using the following commands:
+You can always revert all changes and return back to the clean go1.16.6 using the following commands:
 
 ```
 git reset --hard
@@ -265,11 +265,9 @@ work. In particular this applies to the time package. There is a [port of time
 package](https://github.com/embeddedgo/x/tree/master/time) from Emgo which you
 can use in place of the original one.~~
 
-*Update 2020-02-17: there is a stub implementation of os and syscall packages so the time and other packages now work.*
+*Update 2020-12-18: The os and rtos packages implement a virtual file system. You can mount different file sytems using `rtos.Mount` method and use all functions from os package (see [github.com/embeddedgo/fs](https://github.com/embeddedgo/fs) for example filesystems)*
 
-*Update 2020-12-18: there is a virtual file system implemented. You can mount different file sytems using `rtos.Mount` method and use all functions from os package (see [github.com/embeddedgo/fs](https://github.com/embeddedgo/fs) for example filesystems)*
-
-*Update 2021-02-24: the generation of floating-point instructions is supported but only if the FPU supports both 32-bit and 64-bit operations (Kendryte K210, STM32H7). Use soft-float mode if the FPU supports only 32-bit instructions (STM32F4, STM32L4)'.*
+*Update 2021-02-24: The generation of floating-point instructions is supported but only if the FPU supports both 32-bit and 64-bit operations (Kendryte K210, STM32H7). Use soft-float mode if the FPU supports only 32-bit instructions (STM32F4, STM32L4)'.*
 
 
 *Michał Derkacz*
