@@ -122,7 +122,7 @@ func main() {
 	lcd.SetNote(&eveInt)
 
 	// initialize display
-	if err := lcd.Init(&eve.Default480x272, nil); err != nil {
+	if err := lcd.Init(&eve.Default800x480, nil); err != nil {
 		println(err.Error())
 		return
 	}
