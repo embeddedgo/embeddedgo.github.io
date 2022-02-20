@@ -27,7 +27,7 @@ google_group: embeddedgo
 google_analytics: UA-116411758-2
 
 # Build settings
-markdown: GFM
+markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
