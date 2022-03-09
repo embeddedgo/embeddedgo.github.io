@@ -15,7 +15,7 @@ Pix provides only 9 drawing functions. Three basic ones:
 ```go
 func (a *Area) Draw(r image.Rectangle, src image.Image, sp image.Point, mask image.Image, mp image.Point, op draw.Op)
 func (a *Area) Fill(r image.Rectangle)
-func (a *Area) NewTextWriter(f FontFace) *TextWriter
+func (a *Area) NewTextWriter(f font.Face) *TextWriter
 ```
 
 and six implemented using the above [`Fill`](https://pkg.go.dev/github.com/embeddedgo/display/pix#Area.Fill) function:
@@ -232,7 +232,7 @@ Let's draw the cover image in the center of this area.
 func playerView(disp *pix.Display, artist, title string, cover image.Image) {
 	r := disp.Bounds()
 	a := disp.NewArea(r)
-	a.SetColorRGBA(50, 50, 50, 255)
+	a.SetColor(bgColor)
 	a.Fill(a.Bounds())
 	r.Max.X = r.Min.X + r.Dy()
 	const margin = 20
@@ -247,7 +247,7 @@ func playerView(disp *pix.Display, artist, title string, cover image.Image) {
 
 ![player3]({{site.baseurl}}/images/pix_a_minimalistic_graphic_library/player3.jpg)
 
-The magic `r.Size().Sub(sr.Size()).Div(2)` expression calculates the position for the top left corner of the cover image to place it in the center of the area. We the "simplified" expression instead of `r.Min.Add(r.Size().Sub(sr.Size()).Div(2))` because by default the area's top left corner called *origin* is (0, 0).
+The magic `r.Size().Sub(sr.Size()).Div(2)` expression calculates the position for the top left corner of the cover image to place it in the center of the area. We use the "simplified" expression instead of `r.Min.Add(r.Size().Sub(sr.Size()).Div(2))` because by default the area's top left corner called *origin* is (0, 0).
 
 `Area` has its own internal coordinate system independent of the other areas and the displays it covers. You can change the origin using the [`SetOrigin(p image.Point)`](https://pkg.go.dev/github.com/embeddedgo/display/pix#Area.SetOrigin) method but usually you don't want to do that because (0, 0) is nice and convenient.
 
@@ -314,7 +314,7 @@ disp.Flush()
 
 ![player5]({{site.baseurl}}/images/pix_a_minimalistic_graphic_library/player5.jpg)
 
-Hmm, the default text breaking doesn't look very good for our use case. Let's change it.
+Hmm, the default line breaking mode doesn't look very good for our use case. Let's change it.
 
 ```go
 w := a.NewTextWriter(titleFont)
@@ -414,7 +414,7 @@ r.Min.X += r.Dy()
 r.Max.X -= margin
 r.Min.Y = (r.Min.Y+r.Max.Y)/2 - 10
 r.Max.Y = r.Min.Y + 20
-drawTimeDuration(disp.NewArea(r), 20, 3*60+17)
+drawTimeDuration(disp.NewArea(r), 58, 3*60+17)
 // new code end
 disp.Flush()
 ```
@@ -460,7 +460,7 @@ func drawControls(a *pix.Area) {
 Let's draw the buttons at the bottom right of our view.
 
 ```go
-drawTimeDuration(disp.NewArea(r), 20, 3*60+17)
+drawTimeDuration(disp.NewArea(r), 58, 3*60+17)
 // new code begin
 r = disp.Bounds()
 r.Min.X += r.Dy()
@@ -478,7 +478,7 @@ We can finally see our music player in all its glory.
 
 ### Other drawing functions
 
-As you can see, it's possible to create a pretty decent looking user interface by using only three basic drawing primitives. But pix give us six more ones. let's take a look at each of them.
+As you can see, it's possible to create a pretty decent looking user interface by using only three basic drawing primitives. But pix give us six more ones. Let's take a look at each of them.
 
 #### Area.Point
 
@@ -621,7 +621,7 @@ const (
 As you can see, `FullAngle` and even `FullAngle/2` doesn't fit in `int32`. As the full range of `int32` is used to represent angles from -180° to 180° the calculations on angles aren't obvious:
 
 ```go
-theta := RightAngle
+theta := math2d.RightAngle
 fmt.Println(theta * 4) // prints 0
 ```
 
