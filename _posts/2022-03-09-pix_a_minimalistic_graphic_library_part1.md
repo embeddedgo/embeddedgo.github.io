@@ -348,7 +348,7 @@ var titleFont =  &subfont.Face{
 	Height: dejavusans18.Height,
 	Ascent: dejavusans18.Ascent,
 	Subfonts: []*subfont.Subfont{
-		dejavusans18.X0020_007e,
+		dejavusans18.X0000_0100,
 		dejavusans18.X0101_0201,
 	},
 }
