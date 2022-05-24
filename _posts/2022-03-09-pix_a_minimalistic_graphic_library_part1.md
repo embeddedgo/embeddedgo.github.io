@@ -334,12 +334,12 @@ I still have to explain where did `titleFont` come from. `titleFont` represents 
 import "github.com/embeddedgo/display/font/subfont/font9/dejavusans18"
 
 var titleFont = dejavusans18.NewFace(
-	dejavusans18.X0000_0100, // !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJK
+	dejavusans18.X0020_007e, //  !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJ
 	dejavusans18.X0101_0201, // āĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪī
 )
 ```
 
-Embedding fonts into program code is a common practice in case of embedded systems. Such systems often have no external storage and a limited size of program memory. Fonts can be a large part of program image hence the concept of [subfont](https://pkg.go.dev/github.com/embeddedgo/display/font/subfont) taken straight from [Plan 9](https://9fans.github.io/plan9port/man/man3/subfont.html). It allows you to select only the necessary components of the font. In our case, we included two 18 point subfonts for unicode code points from 0x0000 to 0x0201.
+Embedding fonts into program code is a common practice in case of embedded systems. Such systems often have no external storage and a limited size of program memory. Fonts can be a large part of program image hence the concept of [subfont](https://pkg.go.dev/github.com/embeddedgo/display/font/subfont) taken straight from [Plan 9](https://9fans.github.io/plan9port/man/man3/subfont.html). It allows you to select only the necessary components of the font. In our case, we included two 18 point subfonts for unicode code points from 0x020 to 0x201.
 
 The above declaration using the [`NewFace`](https://pkg.go.dev/github.com/embeddedgo/display/font/subfont/font9/dejavusans18#NewFace) function is a more convenient counterpart to the declaration below:
 
@@ -348,7 +348,7 @@ var titleFont =  &subfont.Face{
 	Height: dejavusans18.Height,
 	Ascent: dejavusans18.Ascent,
 	Subfonts: []*subfont.Subfont{
-		dejavusans18.X0000_0100,
+		dejavusans18.X0020_007e,
 		dejavusans18.X0101_0201,
 	},
 }
