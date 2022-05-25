@@ -26,8 +26,8 @@ Apply patch and build the Go distribution (takes about 2 minutes):
 
 ```
 cd goroot
-git checkout go1.18.1
-patch -p1 <../patch/go1.18.1
+git checkout go1.18.2
+patch -p1 <../patch/go1.18.2
 cd src
 ./make.bash
 ```
