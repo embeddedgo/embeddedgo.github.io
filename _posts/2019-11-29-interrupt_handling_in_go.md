@@ -299,6 +299,7 @@ There are many debouncing algorithms but I will present the best one ;-) which i
 package main
 
 import (
+	"time"
 	"embedded/rtos"
 
 	"github.com/embeddedgo/stm32/hal/exti"
@@ -320,7 +321,7 @@ func main() {
 
 	for {
 		println("i am alive")
-		rtos.Nanosleep(1e9)
+		time.Sleep(time.Second)
 	}
 }
 
@@ -343,9 +344,9 @@ func waitBtn(state int) {
 	for {
 		note.Clear()
 		line.EnableIRQ()
-		wait := int64(-1)
+		wait := time.Duration(-1)
 		if buttons.User.Read() == state {
-			wait = 50e6 // we want 50 ms of stable state
+			wait = 50 * time.Millisecond // we want 50 ms of stable state
 		}
 		if !note.Sleep(wait) {
 			line.DisableIRQ()
