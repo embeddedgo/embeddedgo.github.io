@@ -2,6 +2,8 @@
 layout: post
 title: Go on not so small hardware
 tags: mcu go embeddedgo
+gover: 1.18.4
+paver: 1.18.4
 ---
 
 ![Gopher and STM32 balloons]({{ site.baseur }}/images/gopher/gopher-stm32.jpg)
@@ -22,7 +24,9 @@ The whole fascinating history of the both stages is worth another article. Here,
 
 ### Preparing the environment
 
-The programming environment will be based on the original Go compiler patched for the noos/thumb target and on a set of scripts and libraries from [github.com/embeddedgo](https://github.com/embeddedgo)
+The programming environment will be based on the original Go compiler patched for the noos/thumb target and on a set of scripts and libraries from [github.com/embeddedgo](https://github.com/embeddedgo).
+
+See [Getting started]({{ site.baseur }}/getting_started) the most recent description how to install Embedded Go from binary releases. The following paragraphs describe instalation from source..
 
 #### Installing Go from source
 
@@ -54,12 +58,12 @@ The following commands will add the noos/thumb target to your Go compiler:
 
 ```
 cd $HOME/goroot
-git checkout go1.18.3
-patch -p1 < $HOME/embeddedgo/patch/go1.18.3-3
+git checkout go{{ page.gover }}
+patch -p1 < $HOME/embeddedgo/patch/go{{ page.paver }}
 cd src
 ./make.bash
 ```
-Now you have the ready to use go1.18.3 with added support for linux/thumb, noos/thumb, noos/riscv64 GOOS/GOARCH pairs. You can run tests for your native architecture to ensure that nothing was broken:
+Now you have the ready to use go1.18.4 with added support for linux/thumb, noos/thumb, noos/riscv64 GOOS/GOARCH pairs. You can run tests for your native architecture to ensure that nothing was broken:
 
 ```
 ./run.bash --no-rebuild
