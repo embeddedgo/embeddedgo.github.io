@@ -7,6 +7,8 @@ paver: 1.18.4
 egrel: 1.18.4.1
 ---
 
+*Updated: 2022-07-14*
+
 ### Download, install and use
 
 #### 1. Download
@@ -35,9 +37,9 @@ Embedded Go is a superset of the original Go so you can use it the same way as t
 
 The main tool of the original Go toolchain is the `go` command. Embedded Go obviously provides `go` too. It works the same as the original one. However, Embedded Go provides also a thin wrapper over `go` called `emgo`. Using emgo instead of go gives several benefits but the two most important are:
 
-1. Make it easier to use Embedded Go for embedded programming in presence of the orignal Go compiler (different, more satble version) used for system programming.
+- Facilitate the use of Embedded Go for embedded programming in the presence of the original Go compiler (different, more satable version, etc.) used for system programming.
 
-2. Allow you to customize some of the Embedded Go environment variables using a `build.cfg` file. It is especially useful when you work on multiple projects for different embedded targets at the same time.
+- Allow you to customize some of the Embedded Go environment variables using a `build.cfg` file. It's especially useful when you work at the same time on multiple projects for different embedded targets.
 
 #### 4. Example (Linux)
 
@@ -61,7 +63,7 @@ folowing profile files:
 Changes take effect on next login. Please relogin.
 ```
 
-Create a simple project for STM32F4-DISCOVERY board
+Create a simple project for the [STM32F4-DISCOVERY](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/doc/board.jpg) board
 
 ```
 $ mkdir blinky
@@ -69,7 +71,7 @@ $ cp embeddedgo-{{ page.egrel }}-linux-amd64/project_template/build.cfg blinky
 $ cd blinky
 $ emgo mod init blinky
 go: creating new go.mod: module blinky
-$ cat >main.go
+$ cat > main.go
 package main
 
 import (
@@ -101,19 +103,63 @@ func main() {
 $
 ```
 
-Build
+Compile
 
 ```
 $ emgo build
 main.go:6:2: no required module provides package github.com/embeddedgo/stm32/devboard/f4-discovery/board/leds; to add it:
         go get github.com/embeddedgo/stm32/devboard/f4-discovery/board/leds
-$ emgo get github.com/embeddedgo/stm32
+$ emgo get github.com/embeddedgo/stm32/devboard/f4-discovery/board/leds
 go: downloading github.com/embeddedgo/stm32 v0.10.0
 go: added github.com/embeddedgo/stm32 v0.10.0
 $ emgo build
 $ ls
 blinky.elf  build.cfg  go.mod  go.sum  main.go
 ```
+
+Program the board using [OpenOCD](https://openocd.org/)
+
+```
+$ cat > load.sh
+#!/bin/sh
+
+TARGET=stm32f4x
+RESET=srst_only
+TRACECLKIN=168000000
+
+. $(emgo env GOROOT)/../scripts/load-oocd.sh
+<Ctrl+D>
+$ chmod a+x load.sh
+$ ./load.sh
+Bus 003 Device 008: ID 0483:3748 STMicroelectronics ST-LINK/V2
+Open On-Chip Debugger 0.11.0+dev-00685-g830d70bfc (2022-05-17-14:21)
+Licensed under GNU GPL v2
+For bug reports, read
+        http://openocd.org/doc/doxygen/bugs.html
+debug_level: 0
+
+srst_only separate srst_nogate srst_open_drain connect_deassert_srst
+
+TARGET: stm32f4x.cpu - Not halted
+$ ./load.sh
+Bus 003 Device 009: ID 0483:3748 STMicroelectronics ST-LINK/V2
+Open On-Chip Debugger 0.11.0+dev-00685-g830d70bfc (2022-05-17-14:21)
+Licensed under GNU GPL v2
+For bug reports, read
+        http://openocd.org/doc/doxygen/bugs.html
+debug_level: 0
+
+srst_only separate srst_nogate srst_open_drain connect_deassert_srst
+
+target halted due to debug-request, current mode: Thread
+xPSR: 0x01000000 pc: 0x0803414c msp: 0x20000800
+target halted due to debug-request, current mode: Thread
+xPSR: 0x01000000 pc: 0x0803414c msp: 0x20000800
+** Programming Started **
+** Programming Finished **
+```
+
+
 
 #### 5. More examples
 
@@ -179,7 +225,7 @@ Add your `embeddedgo` directory to the PATH:
 export PATH=$PATH:/path/to/the/embeddedgo
 ```
 
-Use `emgo` instead of `go` to interact with the Embedded Go toolchain. Emgo wraps the go command. It first looks for the Go tree in the directory where it is installed and uses the go tool from it if found. Otherwise it uses `exec.LookPath("go")` to find the go binary elsewhere.
+Use `emgo` instead of `go` to interact with the Embedded Go toolchain. Emgo wraps the go command. It first looks for the Go tree in the directory where it's installed and uses the go tool from it if found. Otherwise it uses `exec.LookPath("go")` to find the go binary elsewhere.
 
 ### More information
 

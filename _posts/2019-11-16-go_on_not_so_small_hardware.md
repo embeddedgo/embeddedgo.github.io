@@ -10,6 +10,8 @@ paver: 1.18.4
 
 <!--more-->
 
+*This article was updated on 2022-07-14*
+
 ### Introduction
 
 The title of this article refers to my earlier article: [Go on very small hardware](https://ziutek.github.io/2018/03/30/go_on_very_small_hardware.html), where I described the [Emgo](https://github.com/ziutek/emgo), Go-like language based on Go to C translation. Now I want to introduce the logical next step: the port of the [Go reference compiler](https://golang.org/) (gc) to the *not so small* microcontrollers. What does "not so small" mean will turn out later in this article.
@@ -26,13 +28,13 @@ The whole fascinating history of the both stages is worth another article. Here,
 
 The programming environment will be based on the original Go compiler patched for the noos/thumb target and on a set of scripts and libraries from [github.com/embeddedgo](https://github.com/embeddedgo).
 
-See [Getting started]({{ site.baseur }}/getting_started) the most recent description how to install Embedded Go from binary releases. The following paragraphs describe instalation from source..
+See [Getting started]({{ site.baseur }}/getting_started) for the most recent description how to install Embedded Go from binary releases. The following paragraphs describe instalation from source.
 
 #### Installing Go from source
 
 If you've never built the Go compiler from source then don't worry because it is an easy and fast process. Compilation of the whole Go together with the standard libraries takes less than 2 minutes on my desktop PC. This is incomparably faster than compiling GCC or LLVM which can take from about 30 minutes to a few hours depending on the speed of your computer.
 
-The whole procedure of instaling Go from source is fully described [here](https://golang.org/doc/install/source). In the following parts of this article I assume that you've managed to follow [the instruction](https://golang.org/doc/install/source) and your newly built Go toolchain is now located in `$HOME/goroot`.
+The whole procedure of instaling Go from source is fully described [here](https://go.dev/doc/install/source). In the following parts of this article I assume that you've managed to follow [the instruction](https://golang.org/doc/install/source) and your newly built Go toolchain is now located in `$HOME/goroot`.
 
 #### Downloading the necessary components of embeddedgo
 
@@ -49,6 +51,7 @@ mkdir $HOME/embeddedgo
 cd $HOME/embeddedgo
 git clone https://github.com/embeddedgo/patch.git
 git clone https://github.com/embeddedgo/scripts.git
+git clone https://github.com/embeddedgo/tools.git
 git clone https://github.com/embeddedgo/stm32.git
 ```
 
@@ -63,18 +66,31 @@ patch -p1 < $HOME/embeddedgo/patch/go{{ page.paver }}
 cd src
 ./make.bash
 ```
-Now you have the ready to use go1.18.4 with added support for linux/thumb, noos/thumb, noos/riscv64 GOOS/GOARCH pairs. You can run tests for your native architecture to ensure that nothing was broken:
+Now you have a ready to use go{{ page.gover }} with added support for linux/thumb, noos/thumb and noos/riscv64 GOOS/GOARCH pairs. You can run tests for your native architecture to ensure that nothing was broken:
 
 ```
 ./run.bash --no-rebuild
 ```
 
-You can always revert all changes and return back to the clean go1.18.2 using the following commands:
+Do not forget to add `$HOME/goroot/bin` to your `PATH` environment variable to allow use `go` command without specifi a full path to it.
+
+If you already have any version of Go installed then you will have a problem which one will be used when you type go. The [Getting started]({{ site.baseur }}/getting_started) describes how to compile Embedded Go and setup an enviroment that do not interfere with existing Go instalation.
+
+You can always revert all changes and return back to the clean go{{ page.gover }} using the following commands:
 
 ```
 git reset --hard
 git clean -fd
 ```
+
+Embedded Go has its own build tool called `emgo`. It's a thin wrapper over `go` command. Let's install it into `$GOPATH/bin` or `$HOME/go/bin` if the GOPATH isn't set:
+
+```
+cd $HOME/tools/emgo
+go install
+```
+
+Make sure that `$GOPATH/bin` or `$HOME/go/bin` is also added to your PATH environment variable.
 
 ### Building an running the example program
 
@@ -131,12 +147,12 @@ Building is easy:
 
 ```
 cd $HOME/embeddedgo/stm32/devboard/f4-discovery/examples/blinky
-../build.sh
+emgo build
 ```
 
-As a result you get blinky.elf binary.
+As a result you get a `blinky.elf` binary.
 
-The build.sh script is a smart wrapper over the `go build` command. You can use `go build` directly this way:
+The `emgo build` is a smart wrapper over the `go build` command. You can use `go build` directly this way:
 
 ```
 export GOOS=noos
@@ -149,7 +165,7 @@ GOMEM=0x20000000:128K,0x10000000:64K
 go build -tags $GOTARGET -ldflags "-M $GOMEM -T $GOTEXT" -o blinky.elf
 ```
 
-The build.sh does some more for interrupt handling code but this is a topic for another article.
+The emgo tool does some more for interrupt handling code and othe things but this is a topic for another article.
 
 #### Running blinky.elf on bare-metal MCU
 
