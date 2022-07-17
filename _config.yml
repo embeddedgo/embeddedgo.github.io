@@ -20,7 +20,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://embeddedgo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: EmbeddedGo
 github_username: embeddedgo
-youtube_username: channel/UCAW4PLMDGO7_vY4sCG0jg6Q
+#youtube_username: channel/UCAW4PLMDGO7_vY4sCG0jg6Q
 google_group: embeddedgo
 #disqus:
 #  shortname: ziutek
