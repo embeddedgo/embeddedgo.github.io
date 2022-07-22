@@ -231,5 +231,4 @@ Use `emgo` instead of `go` to interact with the Embedded Go toolchain. Emgo wrap
 
 Read [Embedded Go blog](https://embeddedgo.github.io/).
 
-Ask questions on [Embedded Go Group](https://groups.google.com/forum/#!forum/embeddedgo).
-
+Ask questions on the Embedded Go [user group](https://groups.google.com/forum/#!forum/embeddedgo) or [reddit](https://www.reddit.com/r/EmbeddedGo/).
