@@ -2,12 +2,12 @@
 layout: page
 title: Getting started
 permalink: /getting_started
-gover: 1.18.4
-paver: 1.18.4-1
+gover: 1.18.5
+paver: 1.18.5
 egrel: 1.18.4.1
 ---
 
-*Updated: 2022-07-22*
+*Updated: 2022-08-02*
 
 ### Download, install and use
 
