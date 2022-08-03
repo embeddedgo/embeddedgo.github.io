@@ -4,10 +4,10 @@ title: Getting started
 permalink: /getting_started
 gover: 1.18.5
 paver: 1.18.5-1
-egrel: 1.18.4.1
+egrel: 1.18.5.0
 ---
 
-*Updated: 2022-08-02*
+*Updated: 2022-08-03*
 
 ### Download, install and use
 
