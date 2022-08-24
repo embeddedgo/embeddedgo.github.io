@@ -4,7 +4,7 @@ title: Getting started
 permalink: /getting_started
 gover: 1.18.5
 paver: 1.18.5-3
-egrel: 1.18.5.0
+egrel: 1.18.5.1
 ---
 
 *Updated: 2022-08-24*
@@ -37,9 +37,9 @@ Embedded Go is a superset of the original Go so you can use it the same way as t
 
 The main tool of the original Go toolchain is the `go` command. Embedded Go obviously provides `go` too. It works the same as the original one. However, Embedded Go provides also a thin wrapper over `go` called `emgo`. Using emgo instead of go gives several benefits but the two most important are:
 
-- Facilitate the use of Embedded Go for embedded programming in the presence of the original Go compiler (different, more satable version, etc.) used for system programming.
+- Facilitate the use of Embedded Go for embedded programming in the presence of the original Go compiler used for system programming (different, more satable version, etc.).
 
-- Allow you to customize some of the Embedded Go environment variables using a `build.cfg` file. It's especially useful when you work at the same time on multiple projects for different embedded targets.
+- Allow to customize some of the Embedded Go environment variables using a `build.cfg` file. It's especially useful when you work at the same time on multiple projects for different embedded targets. You can still use environment variables to configure Embedded Go if you want but variables set in `build.cfg` have priority.
 
 #### 4. Example (Linux)
 
