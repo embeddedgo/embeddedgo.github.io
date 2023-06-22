@@ -50,9 +50,9 @@ The EVE handles also touchscreen and audio. You can assign a tag to any object i
 
 HAOYU Electronics aka HOTMCU is probably the cheapest source of FT8xx based displays. When I was working on the [display/eve](https://pkg.go.dev/github.com/embeddedgo/display/eve) package I've used two of them: [FT800CB-HY50B](https://www.hotmcu.com/5-graphical-lcd-touchscreen-480x272-spi-ft800-p-124.html?cPath=6_16) and [FT811CB-HY50HD](https://www.hotmcu.com/5-graphical-lcd-capacitive-touch-screen-800x480-spi-ft811-p-301.html). The first one uses EVE1 chip (FT800), the second one uses EVE2 chip (FT811). The eve package autodetects EVE version and supports both. You can see the pictures of the FT811CB bellow:
 
-![WS2812B]({{site.baseur}}/images/lcd/ft811cb-hy50hd-front.jpg)
+![WS2812B]({{site.baseur}}/images/display/eve/ft811cb-hy50hd-front.jpg)
 
-![WS2812B]({{site.baseur}}/images/lcd/ft811cb-hy50hd-back.jpg)
+![WS2812B]({{site.baseur}}/images/display/eve/ft811cb-hy50hd-back.jpg)
 
 Its TFT panel isn't outstanding, to put it mildly, but good enough for development purposes.
 
@@ -60,7 +60,7 @@ Unfortunately the displays from HOTMCU are designed to work with 5V logic used b
 
 However, there is a better solution to this problem. You can remove the two 74LVC125A level shifters as shown below:
 
-![WS2812B]({{site.baseur}}/images/lcd/ft811cb-mod.jpg)
+![WS2812B]({{site.baseur}}/images/display/eve/ft811cb-mod.jpg)
 
 As a side effect this modification allows to use 2-bit QSPI mode which doubles the available bandwidth.
 
@@ -70,7 +70,7 @@ Programming with Embedded Video Engine mainly consists of creating display lists
 
 Let's connect the FT811CB display to the [Nucleo-L476RG](https://www.st.com/en/evaluation-tools/nucleo-l476rg.html) development board.
 
-![FT811CB and Nucleo-L476RG]({{site.baseur}}/images/lcd/stm32-ft811.jpg)
+![FT811CB and Nucleo-L476RG]({{site.baseur}}/images/display/eve/stm32-ft811.jpg)
 
 The FT811CB requires 8 wires for GND, 5V, INT, PDN, CSN, SCK, MISO, MOSI signals. There is also AUDIO signal on the header which you can connect to the line input of your audio amplifier or portable speaker.
 
