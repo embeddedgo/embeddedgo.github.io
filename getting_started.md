@@ -4,10 +4,11 @@ title: Getting started
 permalink: /getting_started
 gover: 1.18.9
 paver: 1.18.9-1
-egrel: 1.18.9.2
+egrel: 1.20.5.1
+eprev: 1.18.9.2
 ---
 
-*Updated: 2023-05-19*
+*Updated: 2023-06-23*
 
 ### Download, install and use
 
@@ -15,13 +16,24 @@ egrel: 1.18.9.2
 
 Download a binary release suitable for your system.
 
-| File | OS | Arch | Size |
-| ---- | -- | ---- | ---- |
-| [embeddedgo-{{ page.egrel }}-darwin-amd64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-darwin-amd64.tar.gz) | macOS   | x86-64 | 150MB |
-| [embeddedgo-{{ page.egrel }}-darwin-arm64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-darwin-arm64.tar.gz) | macOS   | ARM64  | 147MB |
-| [embeddedgo-{{ page.egrel }}-linux-amd64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-linux-amd64.tar.gz)   | Linux   | x86-64 | 148MB |
-| [embeddedgo-{{ page.egrel }}-linux-arm64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-linux-arm64.tar.gz)   | Linux   | ARM64  | 142MB |
-| [embeddedgo-{{ page.egrel }}-windows-amd64.zip](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-windows-amd64.zip)     | Windows | x86-64 | 165MB |
+| File | OS | Arch |
+| ---- | -- | ---- |
+| [embeddedgo-{{ page.egrel }}-darwin-amd64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-darwin-amd64.tar.gz) | macOS   | x86-64 |
+| [embeddedgo-{{ page.egrel }}-darwin-arm64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-darwin-arm64.tar.gz) | macOS   | ARM64  |
+| [embeddedgo-{{ page.egrel }}-linux-amd64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-linux-amd64.tar.gz)   | Linux   | x86-64 |
+| [embeddedgo-{{ page.egrel }}-linux-arm64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-linux-arm64.tar.gz)   | Linux   | ARM64  |
+| [embeddedgo-{{ page.egrel }}-windows-amd64.zip](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.egrel }}-windows-amd64.zip)     | Windows | x86-64 |
+
+Previous release.
+
+| File | OS | Arch |
+| ---- | -- | ---- |
+| [embeddedgo-{{ page.eprev }}-darwin-amd64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.eprev }}-darwin-amd64.tar.gz) | macOS   | x86-64 |
+| [embeddedgo-{{ page.eprev }}-darwin-arm64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.eprev }}-darwin-arm64.tar.gz) | macOS   | ARM64  |
+| [embeddedgo-{{ page.eprev }}-linux-amd64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.eprev }}-linux-amd64.tar.gz)   | Linux   | x86-64 |
+| [embeddedgo-{{ page.eprev }}-linux-arm64.tar.gz](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.eprev }}-linux-arm64.tar.gz)   | Linux   | ARM64  |
+| [embeddedgo-{{ page.eprev }}-windows-amd64.zip](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.eprev }}-windows-amd64.zip)     | Windows | x86-64 |
+
 
 #### 2. Install
 
@@ -163,7 +175,7 @@ xPSR: 0x01000000 pc: 0x0803414c msp: 0x20000800
 
 #### 5. More examples
 
-See example programs for various microcontrollers and development boards on Github: [Kendryte](https://github.com/embeddedgo/kendryte/tree/master/devboard), [nRF52](https://github.com/embeddedgo/nrf5/tree/master/devboard), [STM32](https://github.com/embeddedgo/stm32/tree/master/devboard).
+See example programs for various microcontrollers and development boards on Github: [Kendryte](https://github.com/embeddedgo/kendryte/tree/master/devboard), [nRF52](https://github.com/embeddedgo/nrf5/tree/master/devboard), [STM32](https://github.com/embeddedgo/stm32/tree/master/devboard), [IMXRT](https://github.com/embeddedgo/imxrt/tree/master/devboard).
 
 You can find the proper build settings for every supported MCU/board in the board examples subdirectory, eg: [minipro-f405/examples/build.cfg](https://github.com/embeddedgo/stm32/blob/master/devboard/minipro-f405/examples/build.cfg).
 
