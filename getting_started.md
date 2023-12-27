@@ -2,17 +2,15 @@
 layout: page
 title: Getting started
 permalink: /getting_started
-gover: 1.18.9
-paver: 1.18.9-1
-egrel: 1.20.5.1
-eprev: 1.18.9.2
+gover: 1.20.12
+paver: 1.20.12
+egrel: 1.20.12
+eprev: 1.20.5.1
 ---
 
-*Updated: 2023-06-23*
+*Updated: 2023-12-27*
 
-### Download, install and use
-
-#### 1. Download
+### Binary releases
 
 Download a binary release suitable for your system.
 
@@ -35,15 +33,15 @@ Previous release.
 | [embeddedgo-{{ page.eprev }}-windows-amd64.zip](https://www.lnet.pl/embeddedgo/embeddedgo-{{ page.eprev }}-windows-amd64.zip)     | Windows | x86-64 |
 
 
-#### 2. Install
+### Instalation
 
-Optionally remove the previous Embedded Go instalation and any related changes in PATH.
+Remove the previous Embedded Go instalation and any related changes in PATH.
 
 Extract the archive you just downloaded.
 
 Add the extracted directory to your PATH. In case of Linux and Mac you can run `scripts/setup.sh` to do this.
 
-#### 3. Use
+### Usage
 
 Embedded Go is a superset of the original Go so you can use it the same way as the original one both for embedded and system programming.
 
@@ -53,7 +51,7 @@ The main tool of the original Go toolchain is the `go` command. Embedded Go obvi
 
 - Allow to customize some of the Embedded Go environment variables using a `build.cfg` file. It's especially useful when you work at the same time on multiple projects for different embedded targets. You can still use environment variables to configure Embedded Go if you want but variables set in `build.cfg` have priority.
 
-#### 4. Example (Linux)
+### Example (Linux)
 
 Install
 
@@ -118,10 +116,7 @@ $
 Compile
 
 ```
-$ emgo build
-main.go:6:2: no required module provides package github.com/embeddedgo/stm32/devboard/f4-discovery/board/leds; to add it:
-        go get github.com/embeddedgo/stm32/devboard/f4-discovery/board/leds
-$ emgo get github.com/embeddedgo/stm32/devboard/f4-discovery/board/leds
+$ emgo mod tidy
 go: downloading github.com/embeddedgo/stm32 v0.10.0
 go: added github.com/embeddedgo/stm32 v0.10.0
 $ emgo build
@@ -171,9 +166,7 @@ xPSR: 0x01000000 pc: 0x0803414c msp: 0x20000800
 ** Programming Finished **
 ```
 
-
-
-#### 5. More examples
+#### More examples
 
 See example programs for various microcontrollers and development boards on Github: [Kendryte](https://github.com/embeddedgo/kendryte/tree/master/devboard), [nRF52](https://github.com/embeddedgo/nrf5/tree/master/devboard), [STM32](https://github.com/embeddedgo/stm32/tree/master/devboard), [IMXRT](https://github.com/embeddedgo/imxrt/tree/master/devboard).
 

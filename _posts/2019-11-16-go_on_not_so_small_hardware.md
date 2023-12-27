@@ -2,8 +2,8 @@
 layout: post
 title: Go on not so small hardware
 tags: mcu go embeddedgo
-gover: 1.20.5
-paver: 1.20.5-1
+gover: 1.20.12
+paver: 1.20.12
 ---
 
 ![Gopher and STM32 balloons]({{ site.baseur }}/images/gopher/gopher-stm32.jpg)
