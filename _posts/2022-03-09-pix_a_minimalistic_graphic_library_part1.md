@@ -222,7 +222,7 @@ func playerView(disp *pix.Display, artist, title string, cover image.Image) {
 
 In the above code the `a` area initially covers the whole display. `a.SetColor(bgColor)` sets the color for the subsequent `a.Fill(a.Bounds())` that fills the whole screen with it.
 
-Next we do some calculations with `r` to reduce it to the square filling the right side of the screen. `a.SetRect(r.Inset(margin))` reshapes our drawing area to be on the center of `r` with 20 point margins. Finally we fill the area with blue color to see if everything went as planned.
+Next we do some calculations with `r` to reduce it to the square filling the left side of the screen. `a.SetRect(r.Inset(margin))` reshapes our drawing area to be on the center of `r` with 20 point margins. Finally we fill the area with blue color to see if everything went as planned.
 
 ![player2]({{site.baseurl}}/images/pix_a_minimalistic_graphic_library/player2.jpg)
 

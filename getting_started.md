@@ -4,11 +4,11 @@ title: Getting started
 permalink: /getting_started
 gover: 1.20.12
 paver: 1.20.12
-egrel: 1.20.12
+egrel: 1.20.12.2
 eprev: 1.20.5.1
 ---
 
-*Updated: 2023-12-27*
+*Updated: 2023-12-31*
 
 ### Binary releases
 
@@ -39,17 +39,27 @@ Remove the previous Embedded Go instalation and any related changes in PATH.
 
 Extract the archive you just downloaded.
 
-Add the extracted directory to your PATH. In case of Linux and Mac you can run `scripts/setup.sh` to do this.
+Add the extracted directory to your PATH as described below.
+
+#### Windows
+
+Search and open *Advanced system settings*. Go to the *Advanced* tab and click *Environment Variables...* Edit the *Path* variable in *System Variables* or *User Variables*.
+
+#### Unix (Linux, Mac)
+
+Run `scripts/setup.sh` or manualy alter the PATH variable in your profile file (`.profile`, `.bash_profile`).
 
 ### Usage
 
 Embedded Go is a superset of the original Go so you can use it the same way as the original one both for embedded and system programming.
 
-The main tool of the original Go toolchain is the `go` command. Embedded Go obviously provides `go` too. It works the same as the original one. However, Embedded Go provides also a thin wrapper over `go` called `emgo`. Using emgo instead of go gives several benefits but the two most important are:
+The main tool of the original Go toolchain is the `go` command. Embedded Go obviously provides `go` too. It works the same as the original one. However, Embedded Go provides also a thin wrapper over `go` called `emgo`. Using `emgo` instead of `go` gives several benefits but the three most important are:
 
 - Facilitate the use of Embedded Go for embedded programming in the presence of the original Go compiler used for system programming (different, more satable version, etc.).
 
-- Allow to customize some of the Embedded Go environment variables using a `build.cfg` file. It's especially useful when you work at the same time on multiple projects for different embedded targets. You can still use environment variables to configure Embedded Go if you want but variables set in `build.cfg` have priority.
+- Allow to customize some of the Embedded Go environment variables using the `build.cfg` file. It's especially useful when you work at the same time on the multiple projects for different embedded targets. You can still use environment variables to configure Embedded Go if you want but variables set in `build.cfg` have priority.
+
+- Allow to convert the produced ELF binary to the other formats like Intel HEX or raw BIN.
 
 ### Example (Linux)
 
