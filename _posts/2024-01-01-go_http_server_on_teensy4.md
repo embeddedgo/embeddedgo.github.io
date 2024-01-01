@@ -4,7 +4,7 @@ title: Running Go HTTP server on Teensy 4.1
 tags: go golang embeddedgo network graphic
 image: images/pix_a_minimalistic_graphic_library/pix.jpg
 ---
-![pix displays]({{site.baseurl}}/images/go_http_server_on_teensy4/title.jpg)
+![Teensy 4.1 and ESP-01S]({{site.baseurl}}/images/go_http_server_on_teensy4/title.jpg)
 
 <!--more-->
 
@@ -547,8 +547,8 @@ Go HTTP server
 Method:     GET
 URL:        /abc
 Proto:      HTTP/1.1
-Host:       10.234.3.11
-RemoteAddr: 10.234.3.5:46674
+Host:       192.168.1.11
+RemoteAddr: 192.168.1.5:46674
 RequestURI: /abc
 ```
 
