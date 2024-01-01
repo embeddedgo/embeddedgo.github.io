@@ -327,7 +327,7 @@ Password: abc123xyz
 +CWSTATE:2,"Home"
 ```
 
-As the Wi-Fi credentials were saved by the ESP-AT firmware, we won't set them in the further examples.
+As the Wi-Fi credentials were saved by the ESP-AT firmware, we won't set them in the following examples.
 
 ### TCP client
 
@@ -380,11 +380,6 @@ func main() {
 	fatalErr(dev.Init(true))
 	fmt.Println("OK")
 
-	fmt.Print("Initializing Wi-Fi module... ")
-	dev := espat.NewDevice("esp0", u, u)
-	fatalErr(dev.Init(true))
-	fmt.Println("OK")
-
 	fmt.Println("Waiting for an IP address...")
 	for msg := range dev.Async() {
 		fatalErr(msg.Err)
@@ -420,7 +415,7 @@ func main() {
 }
 ```
 
-If we ignore the Wi-Fi initialization and the waiting for an IP address, the only difference from the typical Go TCP client is the use of the [espnet.DialDev](https://pkg.go.dev/github.com/embeddedgo/espat/espnet#DialDev) function instead of [net.Dial](https://pkg.go.dev/net#Dial).
+If we ignore the Wi-Fi initialization and the waiting for an IP address, the only difference from a typical code of TCP client is the use of the [espnet.DialDev](https://pkg.go.dev/github.com/embeddedgo/espat/espnet#DialDev) function instead of [net.Dial](https://pkg.go.dev/net#Dial).
 
 The output may look like this:
 
