@@ -26,8 +26,8 @@ google_group: embeddedgo
 reddit: EmbeddedGo
 #disqus:
 #  shortname: ziutek
-#google_analytics: UA-116411758-2
-google_analytics: G-8X53GDPFYF
+google_analytics: UA-116411758-2
+#google_analytics: G-8X53GDPFYF
 
 # Build settings
 markdown: kramdown
