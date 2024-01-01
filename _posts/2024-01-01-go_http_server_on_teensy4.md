@@ -2,7 +2,7 @@
 layout: post
 title: Running Go HTTP server on Teensy 4.1
 tags: go golang embeddedgo network graphic
-image: images/pix_a_minimalistic_graphic_library/pix.jpg
+image: images/go_http_server_on_teensy4/title.jpg
 ---
 ![Teensy 4.1 and ESP-01S]({{site.baseurl}}/images/go_http_server_on_teensy4/title.jpg)
 
