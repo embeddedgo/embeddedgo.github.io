@@ -242,7 +242,7 @@ Nearby wireless networks:
 +CWLAP:(3,"Home",-82,"2c:c8:1b:11:22:bb",5,-1,-1,4,4,6,0)
 ```
 
-A you can see my Teensy sees two Wi-Fi networks provided by four access points.
+As you can see, my Teensy sees two Wi-Fi networks provided by four access points.
 
 ### USB console
 
