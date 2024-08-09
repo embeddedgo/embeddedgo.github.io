@@ -2,13 +2,13 @@
 layout: page
 title: Getting started
 permalink: /getting_started
-gover: 1.20.12
-paver: 1.20.12
-egrel: 1.20.12.2
-eprev: 1.20.5.1
+gover: 1.22.5
+paver: 1.22.5
+egrel: 1.22.5
+eprev: 1.20.12.2
 ---
 
-*Updated: 2023-12-31*
+*Updated: 2024-08-09*
 
 ### Binary releases
 
@@ -83,7 +83,7 @@ folowing profile files:
 Changes take effect on next login. Please relogin.
 ```
 
-Create a simple project for the [STM32F4-DISCOVERY](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/doc/board.jpg) board
+Create a simple project for the [STM32F4-DISCOVERY](https://github.com/embeddedgo/stm32/blob/master/devboard/f4-discovery/doc/board.jpg) board (see also the [article about Teensy 4]({{ site.baseur }}/2024/01/01/go_http_server_on_teensy4.html))
 
 ```
 $ mkdir blinky
