@@ -43,10 +43,6 @@ Supported microcontrollers / SOCs together with the supported development boards
 
 [![MXCHIP EMW3162]({{page.github}}/stm32/raw/master/devboard/emw3162/doc/board.jpg)]({{page.github}}/stm32/tree/master/devboard/emw3162)
 
-[NUCLEO-L476RG]({{page.github}}/stm32/tree/master/devboard/nucleo-l476rg)
-
-[![NUCLEO-L476RG]({{page.github}}/stm32/raw/master/devboard/nucleo-l476rg/doc/board.jpg)]({{page.github}}/stm32/tree/master/devboard/nucleo-l476rg)
-
 [NUCLEO-L496ZG]({{page.github}}/stm32/tree/master/devboard/nucleo-l496zg)
 
 [![NUCLEO-L496ZG]({{page.github}}/stm32/raw/master/devboard/nucleo-l496zg/doc/board.jpg)]({{page.github}}/stm32/tree/master/devboard/nucleo-l496zg)
