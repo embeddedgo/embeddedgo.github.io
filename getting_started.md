@@ -23,7 +23,7 @@ egver: 1.24.5
 
 ### Embedded Go toolchain
 
-The Embedded Go is distribute as [Go toolchain](https://go.dev/doc/toolchain). All you need to get started is this toolchain, along with a simple utility for loading compiled programs onto your hardware.
+The Embedded Go is released as as [Go toolchain](https://go.dev/doc/toolchain). All you need to get started is this toolchain, along with a simple utility for loading compiled programs onto your hardware.
 
 1. Install the Embedded Go toolchain.
 
