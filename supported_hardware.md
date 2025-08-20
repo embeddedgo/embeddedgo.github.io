@@ -5,7 +5,7 @@ permalink: /supported_hardware
 github: https://github.com/embeddedgo
 ---
 
-Some suppoorted hardware is considered *first class*. The distinction is mostly about available flash and RAM. Go is flash hungry mainly because any executable binary contains a lot of information about itself. It's required by the garbage collector, automatically growing stacks, stack traces, reflection and other runtime things. The runtime itself is also a serious piece of code providing goroutines, channels, maps, automatic memory management and more.
+Some suppoorted hardware is considered *first class*. The distinction is mostly about available flash and RAM. Go is flash hungry, mainly because any executable binary contains a lot of information about itself. It's required by the garbage collector, automatically growing stacks, stack traces, reflection and other runtime things. The runtime itself is also a serious piece of code providing goroutines, channels, maps, automatic memory management and more.
 
 These big binaries aren't a problem in case of the OS capable systems with gigabytes of RAM and terabytes of disc storage. In the microcontroller word, flash memory has always accounted for a significant portion of the unit cost, so it was available in homeopathic quantities (from Go's point of view). Fortunately, this situation has changed with the introduction of eXcution In Place technology and relatively large/cheap external SPI flash memories. Now you can afford to waste some of your flash on "unnecessary things" as you do in case of disk-based storage.
 
