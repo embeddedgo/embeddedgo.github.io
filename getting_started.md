@@ -15,7 +15,7 @@ egver: 1.24.5
 
 2. Git command.
 
-   To instll git on Linux use the package manager provided by your Linux distribution (apt, pacman, rpm, ...).
+   To install git on Linux use the package manager provided by your Linux distribution (apt, pacman, rpm, ...).
 
    Windows users may check the [git for Windows](https://gitforwindows.org/) website.
 

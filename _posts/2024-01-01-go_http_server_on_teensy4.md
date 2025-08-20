@@ -8,6 +8,8 @@ image: images/go_http_server_on_teensy4/title.jpg
 
 <!--more-->
 
+*Updated 2025-08-20: use egtool instead of emgo*
+
 Since its first release in 2009, the Go language has been closely associated with network programming. Unfortunately, until now the Embedded Go had no networking capabilities, mainly due to the strong dependency of the [net](https://pkg.go.dev/net) package on the network capabilities of the underlying operating system. But that has changed.
 
 ### Hardware
@@ -49,26 +51,30 @@ func main() {
 }
 ```
 
-`build.cfg`
+`go.env`
 
 ```
-GOTARGET = imxrt1060
-GOMEM    = 0x20200000:992K
-GOTEXT   = 0x60002000:7928K
+GOTOOLCHAIN=go1.24.5-embedded
+GOOS=noos
+GOARCH=thumb
+GOARM=7,hardfloat
+GOFLAGS=-tags=imxrt1060 '-ldflags=-stripfn=1 -M=0x20200000:992K -F=0x60002000:7928K'
 ```
 
 The `main.go` file contains a simple Go program that blinks the onboard LED. We'll use it to test our development environment.
 
-The `build.cfg` file contains the build options for Teensy 4.1. They also work for Teensy 4.0 but to be consistent with the true size of its Flash you should set `GOTEXT` to `0x60002000:1976K`.
+The `go.env` file contains the build options for Teensy 4.1. They also work for Teensy 4.0 but to be consistent with the true size of its Flash you should set `-F` option to `0x60002000:1976K`.
 
-Run the `emgo mod init` and `emgo mod tidy` commands to initialize our simple "project".
+Set the `GOENV` environment variable to the path of your `go.env` file.
+
+Run the `go mod init` and `go mod tidy` commands to initialize your new "project".
 
 ```
-$ emgo mod init teensyApp
+$ go mod init teensyApp
 go: creating new go.mod: module teensyApp
 go: to add module requirements and sums:
 	go mod tidy
-$ emgo mod tidy
+$ go mod tidy
 go: downloading github.com/embeddedgo/imxrt v0.0.5
 go: finding module for package github.com/embeddedgo/fs/termfs
 go: found github.com/embeddedgo/fs/termfs in github.com/embeddedgo/fs v0.1.0
@@ -76,54 +82,29 @@ go: found github.com/embeddedgo/fs/termfs in github.com/embeddedgo/fs v0.1.0
 
 These two commands create the `go.mod` and `go.sum` files in our folder and install dependencies.
 
-Now we can build our test program.
+Now you can build yout first program.
 
 ```
-$ emgo build
+$ go build
 ```
 
 Go compiler is silent, so there is no any message if everything went well. You should find the result of compilation in the `teensyApp.elf` file.
 
-#### Teensy Loader
-
-*Teensy Loader* is a program that allow you to communicate with your Teensy board over USB. You can download it from the [Teensy website](https://www.pjrc.com/teensy/loader.html).
-
-Unfortunately, the Teensy Loader can't load ELF files. Moreover, the internal bootloader of the Teensy's MCU requires some additional information like *Image Vector Table*, *Boot Data* and *FlexSPI Configuration* that our ELF file doesn't contain. They should be programmed into the first blocks of the Teensy's Flash memory. As they're hardware dependent but software independent they were arranged into one binary file and for our purposes we call them *MBR* (aka Master Boot Record).
-
-Let's download the [mbr.img](https://github.com/embeddedgo/imxrt/raw/master/devboard/teensy4/examples/mbr.img) for our Teensy board.
-
-We also need to modify our `build.cfg` file or download a [ready-made one](https://github.com/embeddedgo/imxrt/raw/master/devboard/teensy4/examples/build.cfg).
-
-```
-GOTARGET = imxrt1060
-GOMEM    = 0x20200000:992K
-GOTEXT   = 0x60002000:7928K
-GOINCBIN = mbr.img:0x60000000
-GOOUT    = hex
-```
-
-Now the `emgo build` command will generate the HEX file as required by Teensy Loader.
-
-```
-$ emgo build
-objcopy: skipping section '.shstrtab' (365 bytes)
-```
-
-Ignore the warning about the .shstrtab section. It's here to remind me that we're wasting 365 bytes in the generated image. It should disappear in the future release of Embedded Go.
-
 #### Programming the board
 
-Connect your Teensy board to your PC using a USB cable, run the Teensy Loader program, select the `teensyApp.hex` file and enable the *Automatic mode*. Now, any press of the Teensy's button will program it with the latest version of generated HEX file.
+Connect your Teensy board to your PC using a USB cable and press the onnboard button (Teensy should start blinking its red LED). Now you can load and run your program.
 
-So press the button.
+```
+$ egtool load
+```
 
-During programming, Teensy blinks its red LED. After reboot, our program should start blinking the yellow LED.
+The program should start blinking the yellow LED.
 
 ### Getting started with the ESP-01S module
 
 Once we have a ready and tested development environment, we can get to the point of this tutorial article.
 
-Let's connect our Wi-Fi module to the Teensy board, according to the table below.
+Let's connect the Wi-Fi module to the Teensy board, according to the table below.
 
 | ESP-01S |  Teensy 4.x |
 | ------- | ----------- |
@@ -134,7 +115,7 @@ Let's connect our Wi-Fi module to the Teensy board, according to the table below
 
 ![Connections]({{site.baseurl}}/images/go_http_server_on_teensy4/connections.jpg)
 
-Because of the limited power capabilities of the Teensy 3V pin (250 mA) and rather long connections our ESP-01S module requires a slight hardware modification.
+Because of the limited power capabilities of the Teensy 3V pin (250 mA) and rather long connections the ESP-01S module requires a slight hardware modification.
 
 The simplest way to meet the momentary power demand of ESP8266 is to store the energy in the properly sized decoupling capacitor. A 100 µF low-ESR electrolytic capacitor between GND and 3V3 should be just right.
 
@@ -146,7 +127,7 @@ Alternatively you can purchase a breadboard adapter that already includes a prop
 
 #### First program
 
-Our first program will display a list of the names (SSIDs) of nearby wireless networks.
+The first program will display a list of the names (SSIDs) of nearby wireless networks.
 
 ```go
 package main
@@ -208,16 +189,19 @@ Let's build it.
 
 
 ```
-$ emgo build
+$ go build
 main.go:7:2: missing go.sum entry for module providing package github.com/embeddedgo/espat (imported by teensyApp); to add:
 	go get teensyApp
-$ emgo get teensyApp
+$ go get teensyApp
 go: downloading github.com/embeddedgo/espat v0.2.3
-$ emgo build
-objcopy: skipping section '.shstrtab' (365 bytes)
+$ go build
 ```
 
-Now press the button on your Teensy to program it (I'm assuming your Teensy Loader is still running in the background).
+Now press the button on your Teensy to program it.
+
+```
+$ egtool load
+```
 
 If you quickly enough connect to the Teensy USB console, you should see the following output from this program:
 
