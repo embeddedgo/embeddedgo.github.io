@@ -9,11 +9,11 @@ egver: 1.24.5
 
 ### Prerequisites
 
-1. Go complier.
+1. Go complier
 
    You can download it from [go.dev/dl](https://go.dev/dl/).
 
-2. Git command.
+2. Git command
 
    To install git on Linux use the package manager provided by your Linux distribution (apt, pacman, rpm, ...).
 
@@ -21,9 +21,13 @@ egver: 1.24.5
 
    The Mac users may use the git command provided by the [Xcode](https://developer.apple.com/xcode/) commandline tools. Another way is to use the [Homebrew](https://brew.sh/) package manager.
 
-3. libusb-1.0
+3. [Raspberry Pi Pico 2](https://www.raspberrypi.com/products/raspberry-pi-pico-2/)
 
-   It's needed if you want to use our tool (egtool) to programm your board. As we use the Pico 2 board in this description you can program it with the [picotool](https://github.com/raspberrypi/picotool) instead.
+   Alternatively you can use the [Teensy 4.x](https://www.pjrc.com/store/teensy41.html) or one of the supported STM32 boards.
+
+4. [libusb-1.0](https://github.com/libusb/libusb/wiki)
+
+   It's needed if you want to use our tool (egtool) to program your board. But you can use a hardware-specific tool instead, for example the [picotool](https://github.com/raspberrypi/picotool) for Raspberry Pi Pico 2.
 
    Follow the instruction provided by [gousb](https://github.com/google/gousb?tab=readme-ov-file). Windows users should read [this gousb note](https://github.com/google/gousb?tab=readme-ov-file#notes-for-installation-on-windows).
 
@@ -111,6 +115,6 @@ As an example we will write a simple program for Raspberry Pi Pico 2. See also t
 
 ### More information
 
-Read [Embedded Go blog](https://embeddedgo.github.io/).
+Read [Embedded Go blog](/).
 
 Ask questions on the Embedded Go [user group](https://groups.google.com/forum/#!forum/embeddedgo) or [reddit](https://www.reddit.com/r/EmbeddedGo/).
