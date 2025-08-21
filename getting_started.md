@@ -23,7 +23,7 @@ egver: 1.24.5
 
 3. libusb-1.0
 
-   It's needed if you want to use the tool provided by Embedded Go (egtool) to programm your board. As we use the Pico 2 board in this description you can program it with the [picotool](https://github.com/raspberrypi/picotool) instead.
+   It's needed if you want to use our tool (egtool) to programm your board. As we use the Pico 2 board in this description you can program it with the [picotool](https://github.com/raspberrypi/picotool) instead.
 
    Follow the instruction provided by [gousb](https://github.com/google/gousb?tab=readme-ov-file). Windows users should read [this gousb note](https://github.com/google/gousb?tab=readme-ov-file#notes-for-installation-on-windows).
 
