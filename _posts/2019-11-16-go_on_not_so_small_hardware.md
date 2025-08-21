@@ -26,6 +26,8 @@ The whole fascinating history of the both stages is worth another article. Here,
 
 ### Preparing the environment
 
+*Update 2025-08-21: Patching of the Go compiler sources is no longer supported by the new releases. Follow the [Getting started](https://embeddedgo.github.io/getting_started) tutorial to install the Embeedded Go as an additional toolchain that can be used by your Go compiler.*
+
 The programming environment will be based on the original Go compiler patched for the noos/thumb target and on a set of scripts and libraries from [github.com/embeddedgo](https://github.com/embeddedgo).
 
 See [Getting started]({{ site.baseur }}/getting_started) for the most recent description how to install Embedded Go from binary releases. The following paragraphs describe instalation from source.
