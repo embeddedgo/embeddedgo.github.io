@@ -5,7 +5,7 @@ permalink: /getting_started
 egver: 1.24.5
 ---
 
-*Updated: 2025-08-14*
+*Updated: 2025-08-21*
 
 ### Prerequisites
 
@@ -20,6 +20,12 @@ egver: 1.24.5
    Windows users may check the [git for Windows](https://gitforwindows.org/) website.
 
    The Mac users may use the git command provided by the [Xcode](https://developer.apple.com/xcode/) commandline tools. Another way is to use the [Homebrew](https://brew.sh/) package manager.
+
+3. libusb-1.0
+
+   It's needed if you want to use the tool provided by Embedded Go (egtool) to programm your board. As we use the Pico 2 board in this description you can program it with the [picotool](https://github.com/raspberrypi/picotool) instead.
+
+   Follow the instruction provided by [gousb](https://github.com/google/gousb?tab=readme-ov-file). Windows users should read [this gousb note](https://github.com/google/gousb?tab=readme-ov-file#notes-for-installation-on-windows).
 
 ### Embedded Go toolchain
 
